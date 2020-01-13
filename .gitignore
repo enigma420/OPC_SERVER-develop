@@ -1,0 +1,8 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/OPCServer1/obj
+/OPCServer1/obj/Debug
+/OPCServer1/bin

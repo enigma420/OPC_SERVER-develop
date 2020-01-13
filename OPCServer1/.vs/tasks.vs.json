@@ -1,0 +1,10 @@
+{
+  "version": "0.2.1",
+  "tasks": [
+    {
+      "taskName": "zadanie-Dashboard",
+      "appliesTo": "Frontend/Dashboard.cs",
+      "type": "command"
+    }
+  ]
+}
