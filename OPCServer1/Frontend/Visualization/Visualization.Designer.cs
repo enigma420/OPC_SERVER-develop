@@ -1,4 +1,4 @@
-﻿namespace OPCServer1.Frontend.Visualization
+﻿namespace OPCServer1
 {
     partial class Visualization
     {
