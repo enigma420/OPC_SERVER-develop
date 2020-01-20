@@ -14,18 +14,21 @@ namespace OPCServer1
 {
     public partial class History : UserControl
     {
+        private DataGridView dataGridView1;
+        private BindingSource bindingSource1;
+        private MySqlDataAdapter dataAdapter;
+        private static String Server = "";
+        private static String Database = "";
+        private static String Uid = "";
+        private static String Password = "";
+
         public History()
         {
+            dataGridView1 = new DataGridView();
+            bindingSource1 = new BindingSource();
+            dataAdapter = new MySqlDataAdapter();
             InitializeComponent();
         }
-
-        private DataGridView dataGridView1 = new DataGridView();
-        private BindingSource bindingSource1 = new BindingSource();
-        private MySqlDataAdapter dataAdapter = new MySqlDataAdapter();
-        private static String Server;
-        private static String Database;
-        private static String Uid;
-        private static String Password;
 
         public static void UpdateDatabaseConnectionData(string server, string database, string uid, string password)
         {
@@ -109,22 +112,7 @@ namespace OPCServer1
             
         }
 
-        private void Button5_Click(object sender, EventArgs e)
-        {
-            // Bind the DataGridView to the BindingSource
-            // and load the data from the database.
-            dataGridView2.DataSource = bindingSource1;
-            GetData("SELECT measure_id,Voltage_L1,DATE_FORMAT(time, '%Y-%m-%d'),DATE_FORMAT(time, '%h:%i:%s') FROM PLC_DATA_PACKAGE_TABLE;");
-        }
-
-        private void Button6_Click(object sender, EventArgs e)
-        {
-            // Bind the DataGridView to the BindingSource
-            // and load the data from the database.
-            dataGridView2.DataSource = bindingSource1;
-            GetData("SELECT ROUND(SUM(True_Power_L1+True_Power_L2+True_Power_L3), 2) FROM measurement_table WHERE MOD(measure_id,10)=0;");
-            
-        }
+      
 
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OPCServer1.Frontend.Visualization;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,11 +15,13 @@ namespace OPCServer1.Forms
 {
     public partial class Dashboard : Form
     {
-       
+
+        private static string dbStatus = "disconnected";
 
         public Dashboard()
         {
             InitializeComponent();
+            RunUpdateDbStatusIntervalRoutine();
         }
 
         private void Button1_Click(object sender, EventArgs e)
@@ -76,17 +79,6 @@ namespace OPCServer1.Forms
             diagrams1.Visible = false;
         }
 
-        public static void UpdateDbStatusLabel(string status)
-        {
-            
-           // DbStatusLabel.Text = status;
-        }
-
-        public static void UpdatePlcStatusLabel(string status)
-        {
-           // PlcStatusLabel.Text = status;
-        }
-
         private void diagrams1_Load(object sender, EventArgs e)
         {
 
@@ -102,6 +94,52 @@ namespace OPCServer1.Forms
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void Button8_Click(object sender, EventArgs e)
+        {
+            Visualization f2 = new Visualization();
+            f2.Show();
+        }
+
+        private void RunUpdateDbStatusIntervalRoutine()
+        {
+            Thread InstanceCaller = new Thread(new ThreadStart(UpdateDbStatusInterval));
+            InstanceCaller.Start();
+        }
+
+        private void UpdateDbStatusInterval()
+        {
+            for (; ; )
+            {
+                try
+                {
+                    this.Invoke((MethodInvoker)delegate ()
+                    {
+                        DbStatusLabel.Text = dbStatus;
+                    });
+
+                    Console.WriteLine("DbStatus: {0}", dbStatus);
+
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error exception: {0}", ex);
+                }
+                Thread.Sleep(1000);
+            }
+        }
+
+        public static void UpdateDatabaseConnectedStatus(bool newDbStatus)
+        {
+            if (newDbStatus)
+            {
+                dbStatus = "connected";
+            }
+            else
+            {
+                dbStatus = "disconnected";
+            }
         }
     }
 }

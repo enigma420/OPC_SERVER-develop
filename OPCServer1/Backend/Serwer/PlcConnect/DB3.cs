@@ -250,53 +250,10 @@ namespace OPCServer1.Backend.Database
         }
 
 
-        public void WritePlcDataSingleVariable(PlcDataPackage plcDataPackage)
+        public void WritePlcDataSingleVariable(String key, bool value)
         {
-            plcDataPackage = WriteSingleVariabless(PlcConnection);
-        }
-
-        public PlcDataPackage WriteSingleVariabless(Plc plc) {
-
-
-            //Singaling Trips:
-            plc.Write("DB3.DBX1.0", true);
-            plc.Write("DB3.DBX1.1", true);
-            plc.Write("DB3.DBX1.2", true);
-            plc.Write("DB3.DBX1.3", true);
-            plc.Write("DB3.DBX1.4", true);
-            plc.Write("DB3.DBX1.5", true);
-            plc.Write("DB3.DBX1.6", true);
-            plc.Write("DB3.DBX1.7", true);
-
-            //Entrance:
-            plc.Write("DB14.DBX0.0", true);
-
-            //Weight:
-            plc.Write("DB14.DBW2.0", 1000);
-
-            return new PlcDataPackage();
-        }
-
-
-        public void WritePlcDataBytesPackage(PlcDataPackage plcDataPackage)
-        {
-            plcDataPackage = WriteBytess(PlcConnection);
-        }
-
-
-        public PlcDataPackage WriteBytess(Plc plc)
-        {
-            byte[] db14Bytes = new byte[1];
-
-            S7.Net.Types.Boolean.ClearBit(db14Bytes[0], 0); // DB14.DBX0.0
-
-            //S7.Net.Types.Boolean.ClearBit(db14Bytes[0], 0); // DB14.DBX0.0
-
-            plc.WriteBytes(DataType.DataBlock, 14, 0, db14Bytes);
-
-            Console.WriteLine("Entrance: {0}" , S7.Net.Types.Boolean.GetValue(db14Bytes[0], 0)); // DB14.DBX0.0
-            
-            return new PlcDataPackage();
+                PlcConnection.Write(key, value);
+                Console.WriteLine("key:{0} , value:{1}", key, value);  
         }
     }
 }

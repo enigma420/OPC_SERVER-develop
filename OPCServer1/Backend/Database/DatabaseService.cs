@@ -32,8 +32,15 @@ namespace OPCServer1
 
         public void UpdateDatabaseServiceDbConnectionData(string server, string database, string uid, string password)
         {
-            MeasurementDatabase.UpdateMeasurementDatabaseData(server, database, uid, password);
-            isDbConnected = MeasurementDatabase.IsDbConnected();
+            try
+            {
+                MeasurementDatabase.UpdateMeasurementDatabaseData(server, database, uid, password);
+                isDbConnected = MeasurementDatabase.IsDbConnected();
+            } catch (System.NullReferenceException ex)
+            {
+                Console.WriteLine("Error while updating database service: {0}", ex.ToString());
+            }
+            
         }
 
         public static void UpdateIsPlcConnected()
@@ -43,7 +50,16 @@ namespace OPCServer1
 
         public bool IsDbConnected()
         {
-            return MeasurementDatabase.IsDbConnected();
+            bool isConnected = false;
+            try
+            {
+                 isConnected = MeasurementDatabase.IsDbConnected();
+            }
+            catch (System.NullReferenceException ex)
+            {
+                Console.WriteLine("Error checking if db is connected: {0}", ex.ToString());
+            }
+            return isConnected;
         }
 
         public bool IsDbAndPlcConnected()
@@ -66,7 +82,7 @@ namespace OPCServer1
                     ReadAndWriteToDbPlcDataPackage();
                 }
                 
-                Thread.Sleep(1000);
+                Thread.Sleep(10000);
             }
         }
 
@@ -81,12 +97,6 @@ namespace OPCServer1
             dataPackage = PlcSrv.ReadPlcDataPackage();
 
             //Write
-
-            //First Option
-
-            //PlcSrv./*WritePlcDataBytesPackage*/(dataPackage);
-
-            //Second Option
 
             //PlcSrv.WritePlcDataSingleVariablePackage(dataPackage);
             

@@ -17,8 +17,10 @@ namespace OPCServer1.Forms
         
         public ConnToDB()
         {
-            InitializeComponent();
             databaseService = new DatabaseService();
+            Dashboard.UpdateDatabaseConnectedStatus(databaseService.IsDbConnected());
+            InitializeComponent();
+           
         }
 
         private void ConnToDB_Load(object sender, EventArgs e)
@@ -33,52 +35,26 @@ namespace OPCServer1.Forms
 
         public void Button6_Click(object sender, EventArgs e) 
         {
+
+            databaseService = new DatabaseService();
             databaseService.UpdateDatabaseServiceDbConnectionData(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text);
 
-            UpdateDbStatus();
+            bool dbStatus = databaseService.IsDbConnected();    
 
-            //try
-            //    {
-
-
-            //    dash.Show();
-            //        Console.WriteLine("try => label6: {0}", label6);
-            //    }
-            //    catch (MySqlException ex)
-            //    {
-
-            //    Console.WriteLine("catch => label6: {0}", label6);
-            //    }
-
-            CurrentlyMeasurement.UpdateDatabaseService(databaseService);
+            CurrentlyMeasurement.UpdateDatabaseService(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text);
 
             History.UpdateDatabaseConnectionData(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text);
 
-            Diagrams.UpdateDatabaseConnectionData(databaseService);
+            Diagrams.UpdateDatabaseConnectionData(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text);
 
-            //CurrentlyMeasurement.UpdateDatabaseConnectionData(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text);
-            //    History.UpdateDatabaseConnectionData(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text);
+            Dashboard.UpdateDatabaseConnectedStatus(dbStatus);
+
 
             //to trzeba ogarnac jakos innym sposobem
             //OPCServer1.Backend.Database.DatabaseService.UpdateDatabaseService(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text);
         }
 
 
-        private void UpdateDbStatus()
-        {
-            bool dbStatus = databaseService.IsDbConnected();
-
-            string dbStatusLabelText = "";
-            if (dbStatus)
-            {
-                dbStatusLabelText = "connected";
-            }
-            else
-            {
-                dbStatusLabelText = "disconnected";
-            }
-            Dashboard.UpdateDbStatusLabel(dbStatusLabelText);
-        }
 
         private void TextBox1_TextChanged(object sender, EventArgs e)
         {
@@ -106,10 +82,11 @@ namespace OPCServer1.Forms
             {
                 databaseService.CloseConnection();
 
-                UpdateDbStatus();
 
-                CurrentlyMeasurement.UpdateDatabaseService(databaseService);
+                CurrentlyMeasurement.UpdateDatabaseService("", "", "", "");
                 History.UpdateDatabaseConnectionData("","","","");
+                Diagrams.UpdateDatabaseConnectionData("", "", "", "");
+                Dashboard.UpdateDatabaseConnectedStatus(false);
 
             }
             else

@@ -15,18 +15,21 @@ namespace OPCServer1
     public class MysqlConnection
     {
         private MySqlConnection connection;
-        private string server;
-        private string database;
-        private string uid;
-        private string password;
+        private static string server;
+        private static string database;
+        private static string uid;
+        private static string password;
         private static bool isDbConnected;
 
 
         //Default Constructor
         public MysqlConnection()
         {
-            //defaultInitialize();
-            //openConnection();
+            server = "";
+            database = "";
+            uid = "";
+            password = "";
+            connection = new MySqlConnection();
         }
 
         //Constructor
@@ -42,25 +45,21 @@ namespace OPCServer1
             return isDbConnected;
         }
 
-        //Default Initialize values
-        private void defaultInitialize()
-        {
-            server = "localhost";
-            database = "serveropc";
-            uid = "dominik";
-            password = "Qwerty123";
-            string connectionString;
-            connectionString = "SERVER=" + server + ";" + "DATABASE=" +
-            database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";MultipleActiveResultSets=true;";
-
-            connection = new MySqlConnection(connectionString);
-        }
-
         //Initialize values
-        private void initialize(string server,string database,string uid,string password)
+        private void initialize(string Server,string Database,string Uid,string Password)
         {
+            server = Server;
+            database = Database;
+            uid = Uid;
+            password = Password;
+            try
+            {
+                connection = new MySqlConnection(getConnectionString(server, database, uid, password));
+            } catch (System.ArgumentException ex)
+            {
+                Console.WriteLine("Error while initializating db: {0}", ex);
+            }
             
-            connection = new MySqlConnection(getConnectionString(server, database, uid, password));
         }
 
         private string getConnectionString(string server, string database, string uid, string password)
@@ -68,15 +67,6 @@ namespace OPCServer1
             return "SERVER=" + server + ";" + "DATABASE=" +
             database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
         }
-
-        //Display Sql Errors
-         private static String DisplayMySqlErrors(MySqlException exception)
-         {
-                 Console.WriteLine(
-                     "Error: " + exception.Message.ToString() + "\n");
-             return Console.ReadLine();
-         }
-         
 
         //open connection to database
         public bool openConnection()
@@ -211,84 +201,18 @@ namespace OPCServer1
 
         }
 
-        private String selectFieldsFromTableQuery(String tableName, String []fields)
-        {
-            String query = "SELECT ";
-            foreach(String field in fields)
-            {
-                query += field + ", ";
-            }
-            query = query.Substring(0, query.Length - 2);
-            query += "FROM " + tableName;
-            Console.WriteLine(query);
-            return query;
-        }
-
-        //public void selectFieldsFromTable(String tableName, String []fields)
-        //{
-        //    String query = selectFieldsFromTableQuery(tableName, fields);
-        //    MySqlCommand cmd = new MySqlCommand(query, connection);
-        //    try
-        //    {
-        //        var result = cmd.ExecuteScalar();
-        //        Console.WriteLine("Result: {0}", result);
-        //    }
-        //    catch (MySqlException e)
-        //    {
-        //        Console.WriteLine("Error while selecting %s from table %s err: %s", fields, tableName, e);
-        //    }
-        //}
-
-        //private bool isDigit(String str)
-        //{
-        //    try
-        //    {
-        //        Convert.ToDouble(str);
-        //    }
-        //    catch (FormatException e)
-        //    {
-        //        return false;
-        //    }
-        //    return true;
-        //}
-
-        
-        //Count statement
-        public int count(String tableName)
-        {
-            string query = "SELECT Count(*) FROM " + tableName;
-            int Count = -1;
-
-            //Open Connection
-            if (this.openConnection() == true)
-            {
-                //Create Mysql Command
-                MySqlCommand cmd = new MySqlCommand(query, connection);
-
-                //ExecuteScalar will return one value
-                Count = int.Parse(cmd.ExecuteScalar() + "");
-
-                //close Connection
-                this.closeConnection();
-
-                return Count;
-            }
-            else
-            {
-                return Count;
-            }
-        }
-
         public MySqlDataReader ExecuteReader(string query)
         {
             MySqlDataReader mySqlDataReader = null;
             MySqlCommand cmd = new MySqlCommand(query);
+            DataTable results = new DataTable();
             cmd.CommandType = CommandType.Text;
             cmd.Connection = connection;
 
             try
             {
                 mySqlDataReader = cmd.ExecuteReader();
+                //results.Load(mySqlDataReader);
             } catch (MySqlException e)
             {
                 Console.WriteLine("MySql error: {0}", e);
@@ -296,11 +220,37 @@ namespace OPCServer1
             catch (System.InvalidOperationException ex)
             {
                 Console.WriteLine("Error: {0}\n", ex);
+            } catch (System.NullReferenceException ex)
+            {
+                Console.WriteLine("Error: {0}\n", ex);
             }
 
+            
             return mySqlDataReader;
 
         }
+
+        struct results
+        {
+            Dictionary<string, string> resultMap;
+        }
+
+        //private Dictionary<string, string>[] parseMySqlDataReaderToArrayMap(MySqlDataReader reader)
+        //{
+        //    int count = 0;
+        //    Dictionary<string, string>[] dic = new Dictionary<string, string>[10000];
+
+        //    if (reader != null && reader.HasRows)
+        //    {
+        //        while (reader.Read())
+        //        {
+        //            foreach (r)
+        //        }
+        //    }
+            
+
+        //    List <dic> = new List<results>();
+        //}
 
         public DataTable GetData(string selectCommand)
         {

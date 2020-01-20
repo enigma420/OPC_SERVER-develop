@@ -46,7 +46,6 @@
             this.controllerValues1 = new OPCServer1.ControllerValues();
             this.currentlyMeasurement1 = new OPCServer1.CurrentlyMeasurement();
             this.button8 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
             this.PlcStatusLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -215,15 +214,7 @@
             this.button8.TabIndex = 17;
             this.button8.Text = "Wizualizacja";
             this.button8.UseVisualStyleBackColor = true;
-            // 
-            // button9
-            // 
-            this.button9.Location = new System.Drawing.Point(642, 13);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(62, 34);
-            this.button9.TabIndex = 18;
-            this.button9.Text = "Alarmy";
-            this.button9.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.Button8_Click);
             // 
             // PlcStatusLabel
             // 
@@ -240,7 +231,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(934, 711);
             this.Controls.Add(this.PlcStatusLabel);
-            this.Controls.Add(this.button9);
             this.Controls.Add(this.button8);
             this.Controls.Add(this.DbStatusLabel);
             this.Controls.Add(this.label5);
@@ -288,7 +278,6 @@
         private System.Windows.Forms.Label label5;
         public System.Windows.Forms.Label DbStatusLabel;
         private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button button9;
         public System.Windows.Forms.Label PlcStatusLabel;
     }
 }

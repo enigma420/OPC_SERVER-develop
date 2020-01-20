@@ -17,23 +17,25 @@ namespace OPCServer1
 {
     partial class Diagrams : UserControl
     {
-        private static DatabaseService databaseService = null;
-        private MySqlDataAdapter dataAdapter = new MySqlDataAdapter();
-        private int lastId;
+        private static DatabaseService databaseService;
+        private int lastId = 0;
+        private PointF centrePoint;
 
         public Diagrams()
         {
             InitializeComponent();
             databaseService = new DatabaseService();
-            RunAddNewestSpeedAndTimeDataIntervalRoutine();
+
+            //RunAddNewestSpeedAndTimeDataIntervalRoutine();
         }
         
-        public static void UpdateDatabaseConnectionData(DatabaseService dbService)
+        public static void UpdateDatabaseConnectionData(String server, String database, String uid, String password)
         {
-            databaseService = dbService;
+            databaseService.UpdateDatabaseServiceDbConnectionData(server, database, uid, password);
+
             //AddAllSpeedAndTimeDataToDiagram(zedGraphControl1);
         }
-
+        
         private void RunAddNewestSpeedAndTimeDataIntervalRoutine()
         {
             Thread InstanceCaller = new Thread(new ThreadStart(RunAddNewestSpeedAndTimeDataInterval));
@@ -48,32 +50,37 @@ namespace OPCServer1
                 //{
                 AddNewestSpeedAndTimeData(zedGraphControl1);
                 //}
-                
+
                 Thread.Sleep(1000);
             }
         }
 
         private void CreateGraph(ZedGraphControl zgc)
         {
-            ZedGraph.GraphPane myPane = zgc.GraphPane;
+            GraphPane mypane = zgc.GraphPane;
 
-            //// Set the titles and axis labels
-            myPane.Title.Text = "Speed = f(Time)";
-            //myPane.XAxis.Title.Text = "Time";
-            myPane.YAxis.Title.Text = "Actual Speed";
+            //// set the titles and axis labels
+            mypane.Title.Text = "Speed = f(Time)";
+            //mypane.xaxis.title.text = "time";
+            mypane.YAxis.Title.Text = "Actual speed";
 
-            myPane.XAxis.Type = AxisType.Date;
-            myPane.XAxis.Title.Text = "Time (HH:MM:SS)";
-            myPane.XAxis.Scale.Format = "HH:mm:ss";
-            myPane.XAxis.Scale.MajorUnit = DateUnit.Second;
-            myPane.XAxis.Scale.MinorUnit = DateUnit.Second;
-            
-            //myPane.XAxis.Scale.Min = DateTime.Now.Subtract(new TimeSpan(0, 0, 10, 0, 0)).ToOADate();
-            myPane.XAxis.Scale.Max = DateTime.Now.ToOADate();
+            mypane.XAxis.Type = AxisType.Date;
+            mypane.XAxis.Title.Text = "time (hh:mm:ss)";
+            mypane.XAxis.Scale.Format = "hh:mm:ss.fff";
+            mypane.XAxis.Scale.MajorUnit = DateUnit.Second;
+            mypane.XAxis.Scale.MajorUnit = DateUnit.Second;
+            mypane.XAxis.Scale.Max = DateTime.Now.ToOADate();
 
-            ZedGraph.PointPairList curve = new ZedGraph.PointPairList();
-            ZedGraph.LineItem myCurve2 = myPane.AddCurve("f(Time)", curve, Color.Blue, ZedGraph.SymbolType.Circle);
+            PointPairList curve = new PointPairList();
+            LineItem mycurve2 = mypane.AddCurve("Actual Speed", curve, Color.Red, SymbolType.Circle);
+            mycurve2.Line.Width = 5.0F;
 
+            mypane.YAxis.Scale.MinAuto = true;
+            mypane.YAxis.Scale.MaxAuto = true;
+            mypane.XAxis.Scale.MinAuto = true;
+            mypane.XAxis.Scale.MaxAuto = true;
+
+            zgc.IsShowPointValues = true;
             zgc.AxisChange();
             zgc.Refresh();
             zgc.Visible = true;
@@ -86,21 +93,24 @@ namespace OPCServer1
             zgc.GraphPane.GraphObjList.Clear();
 
             ZedGraph.PointPairList curve = new ZedGraph.PointPairList();
-            
+
             List<double[]> speedAndTimeList = getAllSpeedAndTimeData();
             for (int i = 0; i < speedAndTimeList.Count; i++)
             {
                 try
                 {
                     curve.Add(speedAndTimeList[i][0], speedAndTimeList[i][1]);
-                } catch (System.ArgumentOutOfRangeException ex)
+                }
+                catch (System.ArgumentOutOfRangeException ex)
                 {
                     Console.WriteLine("Error: {0}", ex.ToString());
                 }
             }
 
-            myPane.AddCurve("f(Time)", curve, Color.Blue, ZedGraph.SymbolType.Circle);
-       
+
+            LineItem myCurve = myPane.AddCurve("f(Time)", curve, Color.Red, ZedGraph.SymbolType.Circle);
+            myCurve.Line.Width = 2.0F;
+
             zgc.AxisChange();
             zgc.Invalidate();
         }
@@ -108,8 +118,8 @@ namespace OPCServer1
         private List<double[]> getAllSpeedAndTimeData()
         {
             List<double[]> list = new List<double[]>();
-            MySqlDataReader data =  databaseService.GetAllSpeedAndTimeData();
-            
+            MySqlDataReader data = databaseService.GetAllSpeedAndTimeData();
+
             if (data != null)
             {
                 if (data.HasRows)
@@ -124,7 +134,7 @@ namespace OPCServer1
                         list.Add(speedAndTime);
                     }
                 }
-                
+
                 data.Close();
             }
 
@@ -149,7 +159,7 @@ namespace OPCServer1
 
         private double[] getNewestSpeedAndTimeData()
         {
-            double[] speedAndTime = {0,0};
+            double[] speedAndTime = { 0, 0 };
             MySqlDataReader data = databaseService.GetNewestSpeedAndTimeData();
 
             if (data != null)
@@ -170,7 +180,7 @@ namespace OPCServer1
                         return speedAndTime;
                     }
                 }
-                
+
                 data.Close();
             }
 
@@ -179,9 +189,9 @@ namespace OPCServer1
 
         private void Diagrams_Load(object sender, EventArgs e)
         {
-            
-                CreateGraph(zedGraphControl1);
-            
+
+           CreateGraph(zedGraphControl1);
+
             //CreateCommand("SELECT ramp_actual_speed_freq, time from PLC_DATA_PACKAGE_TABLE", connectionString);
         }
 
@@ -193,6 +203,18 @@ namespace OPCServer1
         private void Button1_Click(object sender, EventArgs e)
         {
             AddAllSpeedAndTimeDataToDiagram(zedGraphControl1);
+        }
+
+        private void Button2_Click(object sender, EventArgs e)
+        {
+            GraphPane myPane = zedGraphControl1.GraphPane;
+            zedGraphControl1.ZoomPane(myPane, 1.5, centrePoint, false);
+        }
+
+        private void Button3_Click(object sender, EventArgs e)
+        {
+            GraphPane myPane = zedGraphControl1.GraphPane;
+            zedGraphControl1.ZoomPane(myPane, 0.5, centrePoint, false);
         }
     }
 }
