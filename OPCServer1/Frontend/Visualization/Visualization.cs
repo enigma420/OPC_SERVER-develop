@@ -18,15 +18,15 @@ namespace OPCServer1.Frontend.Visualization
     {
         private static DatabaseService databaseService = null;
         private static PlcService plcService;
+      
 
-
-        //Diagnostyczne DB29
+        //Diagnostyczne DB29 inty
         //0.0
-        public bool RunStop { get; set; }
-        public bool RxTx { get; set; }
-        public bool link { get; set; }
-        public bool error { get; set; }
-        public bool maint { get; set; }
+        public int RunStop { get; set; }
+        public int RxTx { get; set; }
+        public int link { get; set; }
+        public int error { get; set; }
+        public int maint { get; set; }
         public bool RunTimeCycle { get; set; }
         public bool WriteLocalTime { get; set; }
         //Alarmowe DB16 od 0.0 do 1.3
@@ -123,126 +123,404 @@ namespace OPCServer1.Frontend.Visualization
             this.data = source.ExportData();
         }
 
-        public void DiodeLogic()
+        public void WeightLogic(int i)
+        {
+
+            if (Entrance_enabled)
+            {
+                if (Entrance)
+                {
+                    Entrance_Green_Diode.Visible = true;
+                    Entrance_Red_Diode.Visible = false;
+                    entrance_weight.Text = Vehicle_weight.ToString();
+                }
+                else
+                {
+                    Entrance_Green_Diode.Visible = false;
+                    Entrance_Red_Diode.Visible = true;
+                }
+            }
+
+            switch (i)
+            {
+                case 0:
+                    if (Weight0 < Maximum_weight || Minimum_weight < Weight0)
+                    {
+                        if (Boundary_weight > Weight0)
+                        {
+                            Zero_Small_Car.Visible = true;
+                            Zero_Big_Car.Visible = false;
+                            Zero_Car_Weight.Text = Weight0.ToString();
+                        }
+                        else
+                        {
+                            Zero_Small_Car.Visible = false;
+                            Zero_Big_Car.Visible = true;
+                            Zero_Car_Weight.Text = Weight0.ToString();
+                        }
+                    }
+                    else
+                    {
+                        Zero_Small_Car.Visible = false;
+                        Zero_Big_Car.Visible = false;
+                    }
+                    break;
+                case 1:
+                    if (Weight1 < Maximum_weight || Minimum_weight < Weight1)
+                    {
+                        if (Boundary_weight > Weight1)
+                        {
+                            First_Small_Car.Visible = true;
+                            First_Big_Car.Visible = false;
+                            First_Car_Weight.Text = Weight1.ToString();
+                        }
+                        else
+                        {
+                            First_Small_Car.Visible = false;
+                            First_Big_Car.Visible = true;
+                            First_Car_Weight.Text = Weight1.ToString();
+                        }
+                    }
+                    else
+                    {
+                        First_Small_Car.Visible = false;
+                        First_Big_Car.Visible = false;
+                    }
+                    break;
+                case 2:
+                    if (Weight2 < Maximum_weight || Minimum_weight < Weight2)
+                    {
+                        if (Boundary_weight > Weight2)
+                        {
+                            Second_Small_Car.Visible = true;
+                            Second_Big_Car.Visible = false;
+                            Second_Car_Weight.Text = Weight2.ToString();
+                        }
+                        else
+                        {
+                            Second_Small_Car.Visible = false;
+                            Second_Big_Car.Visible = true;
+                            Second_Car_Weight.Text = Weight2.ToString();
+                        }
+                    }
+                    else
+                    {
+                        Second_Small_Car.Visible = false;
+                        Second_Big_Car.Visible = false;
+                    }
+                    break;
+                case 3:
+                    if (Weight3 < Maximum_weight || Minimum_weight < Weight3) { 
+                        if (Boundary_weight > Weight3)
+                        {
+                            Third_Small_Car.Visible = true;
+                            Third_Big_Car.Visible = false;
+                            Third_Car_Weight.Text = Weight3.ToString();
+                        }
+                        else
+                        {
+                            Third_Small_Car.Visible = false;
+                            Third_Big_Car.Visible = true;
+                            Third_Car_Weight.Text = Weight3.ToString();
+                        } }
+                    else
+                    {
+                        Third_Small_Car.Visible = false;
+                        Third_Big_Car.Visible = false;
+                    }
+                    break;
+                case 4:
+                    if (Weight4 < Maximum_weight || Minimum_weight < Weight4)
+                    {
+                        if (Boundary_weight > Weight4)
+                        {
+                            Fourth_Small_Car.Visible = true;
+                            Fourth_Big_Car.Visible = false;
+                            Fourth_Car_Weight.Text = Weight4.ToString();
+                        }
+                        else
+                        {
+                            Fourth_Small_Car.Visible = false;
+                            Fourth_Big_Car.Visible = true;
+                            Fourth_Car_Weight.Text = Weight4.ToString();
+                        }
+                    }
+                    else
+                    {
+                        Fourth_Small_Car.Visible = false;
+                        Fourth_Big_Car.Visible = false;
+                    } 
+                    break;
+                case 5:
+                    if (Weight5 < Maximum_weight || Minimum_weight < Weight5)
+                    {
+                        if (Boundary_weight > Weight5)
+                        {
+                            Fifth_Small_Car.Visible = true;
+                            Fifth_Big_Car.Visible = false;
+                            Fifth_Car_Weight.Text = Weight5.ToString();
+                        }
+                        else
+                        {
+                            Fifth_Small_Car.Visible = false;
+                            Fifth_Big_Car.Visible = true;
+                            Fifth_Car_Weight.Text = Weight5.ToString();
+                        }
+                    }
+                    else
+                    {
+                        Fifth_Small_Car.Visible = false;
+                        Fifth_Big_Car.Visible = false;
+                    }
+                    break;
+                case 6:
+                    if (Weight6 < Maximum_weight || Minimum_weight < Weight6)
+                    {
+                        if (Boundary_weight > Weight6)
+                        {
+                            Sixth_Small_Car.Visible = true;
+                            Sixth_Big_Car.Visible = false;
+                            Sixth_Car_Weight.Text = Weight6.ToString();
+                        }
+                        else
+                        {
+                            Sixth_Small_Car.Visible = false;
+                            Sixth_Big_Car.Visible = true;
+                            Sixth_Car_Weight.Text = Weight6.ToString();
+                        }
+                    }
+                    else
+                    {
+                        Sixth_Small_Car.Visible = false;
+                        Sixth_Big_Car.Visible = false;
+                    }
+                    break;
+                case 7:
+                    if (Weight7 < Maximum_weight || Minimum_weight < Weight7)
+                    {
+                        if (Boundary_weight > Weight7)
+                        {
+                            Seventh_Small_Car.Visible = true;
+                            Seventh_Big_Car.Visible = false;
+                            Seventh_Car_Weight.Text = Weight7.ToString();
+                        }
+                        else
+                        {
+                            Seventh_Small_Car.Visible = false;
+                            Seventh_Big_Car.Visible = true;
+                            Seventh_Car_Weight.Text = Weight7.ToString();
+                        }
+                    }
+                    else
+                    {
+                        Seventh_Small_Car.Visible = false;
+                        Seventh_Big_Car.Visible = false;
+                    }
+                    break;
+                default:
+                    break;
+
+            }
+            
+        }
+
+        public void CarAndWeightAndDiodeLogic()
         {
             if (Occupancy0) {
                 Zero_Place_Red_Diode.Visible = true;
                 Zero_Place_Green_Diode.Visible = false;
+                WeightLogic(0);
             }
             else
             {
                 Zero_Place_Red_Diode.Visible = false;
                 Zero_Place_Green_Diode.Visible = true;
+                Zero_Big_Car.Visible = false;
+                Zero_Small_Car.Visible = false;
+                Zero_Car_Weight.Text = "0";
+
             }
             if (Occupancy1)
             {
                 First_Place_Red_Diode.Visible = true;
                 First_Place_Green_Diode.Visible = false;
+                WeightLogic(1);
             }
             else
             {
                 First_Place_Red_Diode.Visible = false;
                 First_Place_Green_Diode.Visible = true;
+                First_Big_Car.Visible = false;
+                First_Small_Car.Visible = false;
+                First_Car_Weight.Text = "0";
             }
             if (Occupancy2)
             {
                 Second_Place_Red_Diode.Visible = true;
                 Second_Place_Green_Diode.Visible = false;
+                WeightLogic(2);
             }
             else
             {
                 Second_Place_Red_Diode.Visible = false;
                 Second_Place_Green_Diode.Visible = true;
+                Second_Big_Car.Visible = false;
+                Second_Small_Car.Visible = false;
+                Second_Car_Weight.Text = "0";
             }
             if (Occupancy3)
             {
                 Third_Place_Red_Diode.Visible = true;
                 Third_Place_Green_Diode.Visible = false;
+                WeightLogic(3);
             }
             else
             {
                 Third_Place_Red_Diode.Visible = false;
                 Third_Place_Green_Diode.Visible = true;
+                Third_Big_Car.Visible = false;
+                Third_Small_Car.Visible = false;
+                Third_Car_Weight.Text = "0";
             }
             if (Occupancy4)
             {
                 Fourth_Place_Red_Diode.Visible = true;
                 Fourth_Place_Green_Diode.Visible = false;
+                WeightLogic(4);
             }
             else
             {
                 Fourth_Place_Red_Diode.Visible = false;
                 Fourth_Place_Green_Diode.Visible = true;
+                Fourth_Big_Car.Visible = false;
+                Fourth_Small_Car.Visible = false;
+                Fourth_Car_Weight.Text = "0";
             }
             if (Occupancy5)
             {
                 Fifth_Place_Red_Diode.Visible = true;
                 Fifth_Place_Green_Diode.Visible = false;
+                WeightLogic(5);
             }
             else
             {
                 Fifth_Place_Red_Diode.Visible = false;
                 Fifth_Place_Green_Diode.Visible = true;
+                Fifth_Big_Car.Visible = false;
+                Fifth_Small_Car.Visible = false;
+                Fifth_Car_Weight.Text = "0";
             }
             if (Occupancy6)
             {
                 Sixth_Place_Red_Diode.Visible = true;
                 Sixth_Place_Green_Diode.Visible = false;
+                WeightLogic(6);
             }
             else
             {
                 Sixth_Place_Red_Diode.Visible = false;
                 Sixth_Place_Green_Diode.Visible = true;
+                Sixth_Big_Car.Visible = false;
+                Sixth_Small_Car.Visible = false;
+                Sixth_Car_Weight.Text = "0";
             }
             if (Occupancy7)
             {
                 Seventh_Place_Red_Diode.Visible = true;
                 Seventh_Place_Green_Diode.Visible = false;
+                WeightLogic(7);
             }
             else
             {
                 Seventh_Place_Red_Diode.Visible = false;
                 Seventh_Place_Green_Diode.Visible = true;
+                Seventh_Big_Car.Visible = false;
+                Seventh_Small_Car.Visible = false;
+                Seventh_Car_Weight.Text = "0";
             }
-        }
-
-        public void CarLogic()
-        {
-
         }
 
         public void AlarmsLogic()
         {
+            if (engineError_Alarm) {
+                engine_error_alarm_green_diode.Visible = true;
+                engine_error_alarm_red_diode.Visible = false;
+            }
+            else
+            {
+                engine_error_alarm_green_diode.Visible = false;
+                engine_error_alarm_red_diode.Visible = true;
+            }
+            if (controlSystemError_Alarm)
+            {
+                control_system_error_alarm_green_diode.Visible = true;
+                control_system_error_alarm_red_diode.Visible = false;
+            }
+            else
+            {
+                control_system_error_alarm_green_diode.Visible = false;
+                control_system_error_alarm_red_diode.Visible = true;
+            }
+            if (entranceSensorError_Alarm)
+            {
+                entrance_sensors_error_alarm_green_diode.Visible = true;
+                entrance_sensors_error_alarm_red_diode.Visible = false;
+            }
+            else
+            {
+                entrance_sensors_error_alarm_green_diode.Visible = false;
+                entrance_sensors_error_alarm_red_diode.Visible = true;
+            }
+            if (Error_Alarm)
+            {
+                algorithm_error_green_diode.Visible = true;
+                algorithm_error_red_diode.Visible = false;
+            }
+            else
+            {
+                algorithm_error_green_diode.Visible = false;
+                algorithm_error_red_diode.Visible = true;
+            }
+        }
 
+        public void DiagnosticConvert(int i , PictureBox green_diode, PictureBox red_diode)
+        {
+            switch (i)
+            {
+                case 2:
+                    green_diode.Visible = true;
+                    break;
+                case 3:
+                    red_diode.Visible = false;
+                    break;
+                default:
+                    break;
+
+            }
         }
 
         public void DiagnosticLogic()
         {
-            if (RunStop) runstop_label.Text = "RUN";
-            else runstop_label.Text = "STOP";
-            if (error) error_label.Text = "ERROR";
-            else error_label.Text = "CORRECT";
-            if (maint) maint_label.Text = "DIAGNOSING";
-            else maint_label.Text = "NOT DIAGNOSING";
-            if (link) link_label.Text = "PODŁĄCZONY";
-            else link_label.Text = "NIEPODŁĄCZONY";
-            if (RxTx) rxtx_label.Text = "TRANSMITUJE";
-            else rxtx_label.Text = "NIETRANSMITUJE";
+            DiagnosticConvert(RunStop, plc_run_green_diode, plc_run_red_diode);
+            DiagnosticConvert(error, plc_error_green_diode, plc_error_red_diode);
+            DiagnosticConvert(maint, plc_diagnosing_green_diode, plc_diagnosing_red_diode);
+            DiagnosticConvert(link, plc_link_green_diode, plc_link_red_diode);
+            DiagnosticConvert(RxTx, plc_rxtx_green_diode, plc_rxtx_red_diode);
         }
 
         public void RotorLogic()
         {
-            if(Ramp_actual_speed_freq != 0.0) 
+            if(Parking_in_move == true) 
             {
                 Rotor_2.Visible = false;
                 Rotor_1.Visible = true;
 
-                Thread.Sleep(50);
+                Thread.Sleep(20);
 
                 Rotor_1.Visible = false;
                 Rotor_2.Visible = true;
 
-                Thread.Sleep(50);
+                Thread.Sleep(20);
             }
             else
             {
@@ -251,19 +529,37 @@ namespace OPCServer1.Frontend.Visualization
             }
         }
 
-        public void WeightLogic()
+        public void DirectionMovement()
         {
-
+            if (Parking_in_move)
+            {
+                if (Left_right == true)
+                {
+                    arrow_right.Visible = true;
+                    arrow_left.Visible = false;
+                }
+                if (Left_right == false)
+                {
+                    arrow_left.Visible = true;
+                    arrow_right.Visible = false;
+                }
+            }
+            else
+            {
+                arrow_right.Visible = false;
+                arrow_left.Visible = false;
+            }
+            
         }
 
         public void MainLogic()
         {
+            DiagnosticLogic();
             AlarmsLogic();
             RotorLogic();
-            CarLogic();
-            DiodeLogic();
-            WeightLogic();
-            
+            DirectionMovement();
+            CarAndWeightAndDiodeLogic();
+
         }
 
         private void PictureBox2_Click(object sender, EventArgs e)
@@ -272,6 +568,11 @@ namespace OPCServer1.Frontend.Visualization
         }
         
         private void Visualization_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Weight_Indicator_Load(object sender, EventArgs e)
         {
 
         }
