@@ -13,6 +13,10 @@ namespace OPCServer1.Frontend.Visualization
 {
     public partial class WeightIndicator : UserControl
     {
+
+       
+
+       
         
         #region zmienne programu
         private float valueActual = 0;

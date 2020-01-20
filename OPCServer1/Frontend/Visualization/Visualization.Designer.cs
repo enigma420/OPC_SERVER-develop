@@ -86,7 +86,44 @@
             this.Fifth_Car_Weight = new System.Windows.Forms.Label();
             this.Fourth_Car_Weight = new System.Windows.Forms.Label();
             this.First_Car_Weight = new System.Windows.Forms.Label();
-            this.Weight_Indicator = new OPCServer1.Frontend.Visualization.WeightIndicator();
+            this.plc_rxtx_green_diode = new System.Windows.Forms.PictureBox();
+            this.plc_link_green_diode = new System.Windows.Forms.PictureBox();
+            this.plc_diagnosing_green_diode = new System.Windows.Forms.PictureBox();
+            this.plc_error_green_diode = new System.Windows.Forms.PictureBox();
+            this.plc_run_green_diode = new System.Windows.Forms.PictureBox();
+            this.plc_rxtx_red_diode = new System.Windows.Forms.PictureBox();
+            this.plc_link_red_diode = new System.Windows.Forms.PictureBox();
+            this.plc_diagnosing_red_diode = new System.Windows.Forms.PictureBox();
+            this.plc_error_red_diode = new System.Windows.Forms.PictureBox();
+            this.plc_run_red_diode = new System.Windows.Forms.PictureBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.algorithm_error_red_diode = new System.Windows.Forms.PictureBox();
+            this.entrance_sensors_error_alarm_red_diode = new System.Windows.Forms.PictureBox();
+            this.control_system_error_alarm_red_diode = new System.Windows.Forms.PictureBox();
+            this.engine_error_alarm_red_diode = new System.Windows.Forms.PictureBox();
+            this.algorithm_error_green_diode = new System.Windows.Forms.PictureBox();
+            this.entrance_sensors_error_alarm_green_diode = new System.Windows.Forms.PictureBox();
+            this.control_system_error_alarm_green_diode = new System.Windows.Forms.PictureBox();
+            this.engine_error_alarm_green_diode = new System.Windows.Forms.PictureBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.entrance_weight = new System.Windows.Forms.Label();
+            this.arrow_right = new System.Windows.Forms.PictureBox();
+            this.arrow_left = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.Rotor_1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Rotor_2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Sixth_Big_Car)).BeginInit();
@@ -125,6 +162,26 @@
             ((System.ComponentModel.ISupportInitialize)(this.First_Place_Red_Diode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Alarm_Red_Diode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Alarm_Green_Diode)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.plc_rxtx_green_diode)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.plc_link_green_diode)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.plc_diagnosing_green_diode)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.plc_error_green_diode)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.plc_run_green_diode)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.plc_rxtx_red_diode)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.plc_link_red_diode)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.plc_diagnosing_red_diode)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.plc_error_red_diode)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.plc_run_red_diode)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.algorithm_error_red_diode)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.entrance_sensors_error_alarm_red_diode)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.control_system_error_alarm_red_diode)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.engine_error_alarm_red_diode)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.algorithm_error_green_diode)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.entrance_sensors_error_alarm_green_diode)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.control_system_error_alarm_green_diode)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.engine_error_alarm_green_diode)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.arrow_right)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.arrow_left)).BeginInit();
             this.SuspendLayout();
             // 
             // Rotor_1
@@ -275,7 +332,7 @@
             // Fourth_Small_Car
             // 
             this.Fourth_Small_Car.Image = ((System.Drawing.Image)(resources.GetObject("Fourth_Small_Car.Image")));
-            this.Fourth_Small_Car.Location = new System.Drawing.Point(560, 246);
+            this.Fourth_Small_Car.Location = new System.Drawing.Point(560, 243);
             this.Fourth_Small_Car.Name = "Fourth_Small_Car";
             this.Fourth_Small_Car.Size = new System.Drawing.Size(255, 126);
             this.Fourth_Small_Car.TabIndex = 16;
@@ -347,7 +404,7 @@
             // Entrance_Green_Diode
             // 
             this.Entrance_Green_Diode.Image = ((System.Drawing.Image)(resources.GetObject("Entrance_Green_Diode.Image")));
-            this.Entrance_Green_Diode.Location = new System.Drawing.Point(673, 62);
+            this.Entrance_Green_Diode.Location = new System.Drawing.Point(931, 161);
             this.Entrance_Green_Diode.Name = "Entrance_Green_Diode";
             this.Entrance_Green_Diode.Size = new System.Drawing.Size(35, 35);
             this.Entrance_Green_Diode.TabIndex = 24;
@@ -356,7 +413,7 @@
             // Zero_Place_Green_Diode
             // 
             this.Zero_Place_Green_Diode.Image = ((System.Drawing.Image)(resources.GetObject("Zero_Place_Green_Diode.Image")));
-            this.Zero_Place_Green_Diode.Location = new System.Drawing.Point(673, 930);
+            this.Zero_Place_Green_Diode.Location = new System.Drawing.Point(673, 935);
             this.Zero_Place_Green_Diode.Name = "Zero_Place_Green_Diode";
             this.Zero_Place_Green_Diode.Size = new System.Drawing.Size(35, 35);
             this.Zero_Place_Green_Diode.TabIndex = 25;
@@ -383,7 +440,7 @@
             // Entrance_Red_Diode
             // 
             this.Entrance_Red_Diode.Image = ((System.Drawing.Image)(resources.GetObject("Entrance_Red_Diode.Image")));
-            this.Entrance_Red_Diode.Location = new System.Drawing.Point(673, 62);
+            this.Entrance_Red_Diode.Location = new System.Drawing.Point(931, 161);
             this.Entrance_Red_Diode.Name = "Entrance_Red_Diode";
             this.Entrance_Red_Diode.Size = new System.Drawing.Size(35, 35);
             this.Entrance_Red_Diode.TabIndex = 28;
@@ -437,7 +494,7 @@
             // Zero_Place_Red_Diode
             // 
             this.Zero_Place_Red_Diode.Image = ((System.Drawing.Image)(resources.GetObject("Zero_Place_Red_Diode.Image")));
-            this.Zero_Place_Red_Diode.Location = new System.Drawing.Point(673, 929);
+            this.Zero_Place_Red_Diode.Location = new System.Drawing.Point(673, 935);
             this.Zero_Place_Red_Diode.Name = "Zero_Place_Red_Diode";
             this.Zero_Place_Red_Diode.Size = new System.Drawing.Size(35, 35);
             this.Zero_Place_Red_Diode.TabIndex = 34;
@@ -536,7 +593,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(627, 29);
+            this.label9.Location = new System.Drawing.Point(885, 128);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(132, 20);
             this.label9.TabIndex = 45;
@@ -545,10 +602,10 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(860, 29);
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
+            this.label10.Location = new System.Drawing.Point(807, 29);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(255, 20);
+            this.label10.Size = new System.Drawing.Size(298, 24);
             this.label10.TabIndex = 46;
             this.label10.Text = "Waga Pojazdu Wjeżdżającego:";
             // 
@@ -660,26 +717,409 @@
             this.First_Car_Weight.TabIndex = 57;
             this.First_Car_Weight.Text = "waga";
             // 
-            // Weight_Indicator
+            // plc_rxtx_green_diode
             // 
-            this.Weight_Indicator.backgroundcolor = System.Drawing.Color.White;
-            this.Weight_Indicator.circlecolor = System.Drawing.Color.Black;
-            this.Weight_Indicator.controlfont = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold);
-            this.Weight_Indicator.Location = new System.Drawing.Point(1077, 12);
-            this.Weight_Indicator.Name = "Weight_Indicator";
-            this.Weight_Indicator.Size = new System.Drawing.Size(290, 290);
-            this.Weight_Indicator.TabIndex = 36;
-            this.Weight_Indicator.tipcolor = System.Drawing.Color.Red;
-            this.Weight_Indicator.tipwidth = 2F;
-            this.Weight_Indicator.valueactual = 0F;
-            this.Weight_Indicator.valuemax = 100F;
-            this.Weight_Indicator.valuemin = 0F;
+            this.plc_rxtx_green_diode.Image = ((System.Drawing.Image)(resources.GetObject("plc_rxtx_green_diode.Image")));
+            this.plc_rxtx_green_diode.Location = new System.Drawing.Point(240, 243);
+            this.plc_rxtx_green_diode.Name = "plc_rxtx_green_diode";
+            this.plc_rxtx_green_diode.Size = new System.Drawing.Size(35, 35);
+            this.plc_rxtx_green_diode.TabIndex = 58;
+            this.plc_rxtx_green_diode.TabStop = false;
+            // 
+            // plc_link_green_diode
+            // 
+            this.plc_link_green_diode.Image = ((System.Drawing.Image)(resources.GetObject("plc_link_green_diode.Image")));
+            this.plc_link_green_diode.Location = new System.Drawing.Point(240, 202);
+            this.plc_link_green_diode.Name = "plc_link_green_diode";
+            this.plc_link_green_diode.Size = new System.Drawing.Size(35, 35);
+            this.plc_link_green_diode.TabIndex = 59;
+            this.plc_link_green_diode.TabStop = false;
+            // 
+            // plc_diagnosing_green_diode
+            // 
+            this.plc_diagnosing_green_diode.Image = ((System.Drawing.Image)(resources.GetObject("plc_diagnosing_green_diode.Image")));
+            this.plc_diagnosing_green_diode.Location = new System.Drawing.Point(240, 161);
+            this.plc_diagnosing_green_diode.Name = "plc_diagnosing_green_diode";
+            this.plc_diagnosing_green_diode.Size = new System.Drawing.Size(35, 35);
+            this.plc_diagnosing_green_diode.TabIndex = 60;
+            this.plc_diagnosing_green_diode.TabStop = false;
+            // 
+            // plc_error_green_diode
+            // 
+            this.plc_error_green_diode.Image = ((System.Drawing.Image)(resources.GetObject("plc_error_green_diode.Image")));
+            this.plc_error_green_diode.Location = new System.Drawing.Point(240, 120);
+            this.plc_error_green_diode.Name = "plc_error_green_diode";
+            this.plc_error_green_diode.Size = new System.Drawing.Size(35, 35);
+            this.plc_error_green_diode.TabIndex = 61;
+            this.plc_error_green_diode.TabStop = false;
+            // 
+            // plc_run_green_diode
+            // 
+            this.plc_run_green_diode.Image = ((System.Drawing.Image)(resources.GetObject("plc_run_green_diode.Image")));
+            this.plc_run_green_diode.Location = new System.Drawing.Point(240, 79);
+            this.plc_run_green_diode.Name = "plc_run_green_diode";
+            this.plc_run_green_diode.Size = new System.Drawing.Size(35, 35);
+            this.plc_run_green_diode.TabIndex = 62;
+            this.plc_run_green_diode.TabStop = false;
+            // 
+            // plc_rxtx_red_diode
+            // 
+            this.plc_rxtx_red_diode.Image = ((System.Drawing.Image)(resources.GetObject("plc_rxtx_red_diode.Image")));
+            this.plc_rxtx_red_diode.Location = new System.Drawing.Point(240, 243);
+            this.plc_rxtx_red_diode.Name = "plc_rxtx_red_diode";
+            this.plc_rxtx_red_diode.Size = new System.Drawing.Size(35, 35);
+            this.plc_rxtx_red_diode.TabIndex = 63;
+            this.plc_rxtx_red_diode.TabStop = false;
+            // 
+            // plc_link_red_diode
+            // 
+            this.plc_link_red_diode.Image = ((System.Drawing.Image)(resources.GetObject("plc_link_red_diode.Image")));
+            this.plc_link_red_diode.Location = new System.Drawing.Point(240, 202);
+            this.plc_link_red_diode.Name = "plc_link_red_diode";
+            this.plc_link_red_diode.Size = new System.Drawing.Size(35, 35);
+            this.plc_link_red_diode.TabIndex = 64;
+            this.plc_link_red_diode.TabStop = false;
+            // 
+            // plc_diagnosing_red_diode
+            // 
+            this.plc_diagnosing_red_diode.Image = ((System.Drawing.Image)(resources.GetObject("plc_diagnosing_red_diode.Image")));
+            this.plc_diagnosing_red_diode.Location = new System.Drawing.Point(240, 161);
+            this.plc_diagnosing_red_diode.Name = "plc_diagnosing_red_diode";
+            this.plc_diagnosing_red_diode.Size = new System.Drawing.Size(35, 35);
+            this.plc_diagnosing_red_diode.TabIndex = 65;
+            this.plc_diagnosing_red_diode.TabStop = false;
+            // 
+            // plc_error_red_diode
+            // 
+            this.plc_error_red_diode.Image = ((System.Drawing.Image)(resources.GetObject("plc_error_red_diode.Image")));
+            this.plc_error_red_diode.Location = new System.Drawing.Point(240, 120);
+            this.plc_error_red_diode.Name = "plc_error_red_diode";
+            this.plc_error_red_diode.Size = new System.Drawing.Size(35, 35);
+            this.plc_error_red_diode.TabIndex = 66;
+            this.plc_error_red_diode.TabStop = false;
+            // 
+            // plc_run_red_diode
+            // 
+            this.plc_run_red_diode.Image = ((System.Drawing.Image)(resources.GetObject("plc_run_red_diode.Image")));
+            this.plc_run_red_diode.Location = new System.Drawing.Point(240, 79);
+            this.plc_run_red_diode.Name = "plc_run_red_diode";
+            this.plc_run_red_diode.Size = new System.Drawing.Size(35, 35);
+            this.plc_run_red_diode.TabIndex = 67;
+            this.plc_run_red_diode.TabStop = false;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(132, 243);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(96, 20);
+            this.label12.TabIndex = 68;
+            this.label12.Text = "PLC Rx/Tx:";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(137, 202);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(91, 20);
+            this.label13.TabIndex = 69;
+            this.label13.Text = "PLC LINK:";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(62, 161);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(166, 20);
+            this.label14.TabIndex = 70;
+            this.label14.Text = "PLC DIAGNOSING:";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(136, 120);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(92, 20);
+            this.label15.TabIndex = 71;
+            this.label15.Text = "PLC Error:";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(138, 79);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(90, 20);
+            this.label16.TabIndex = 72;
+            this.label16.Text = "PLC RUN:";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(427, 176);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(135, 20);
+            this.label17.TabIndex = 73;
+            this.label17.Text = "Algorithm Error:";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(308, 128);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(254, 20);
+            this.label18.TabIndex = 74;
+            this.label18.Text = "Entrance Sensors Error Alarm:";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.Location = new System.Drawing.Point(330, 68);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(232, 20);
+            this.label19.TabIndex = 75;
+            this.label19.Text = "Control System Error Alarm:";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.Location = new System.Drawing.Point(396, 22);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(166, 20);
+            this.label20.TabIndex = 76;
+            this.label20.Text = "Engine Error Alarm:";
+            // 
+            // algorithm_error_red_diode
+            // 
+            this.algorithm_error_red_diode.Image = ((System.Drawing.Image)(resources.GetObject("algorithm_error_red_diode.Image")));
+            this.algorithm_error_red_diode.Location = new System.Drawing.Point(568, 176);
+            this.algorithm_error_red_diode.Name = "algorithm_error_red_diode";
+            this.algorithm_error_red_diode.Size = new System.Drawing.Size(35, 35);
+            this.algorithm_error_red_diode.TabIndex = 77;
+            this.algorithm_error_red_diode.TabStop = false;
+            // 
+            // entrance_sensors_error_alarm_red_diode
+            // 
+            this.entrance_sensors_error_alarm_red_diode.Image = ((System.Drawing.Image)(resources.GetObject("entrance_sensors_error_alarm_red_diode.Image")));
+            this.entrance_sensors_error_alarm_red_diode.Location = new System.Drawing.Point(568, 120);
+            this.entrance_sensors_error_alarm_red_diode.Name = "entrance_sensors_error_alarm_red_diode";
+            this.entrance_sensors_error_alarm_red_diode.Size = new System.Drawing.Size(35, 35);
+            this.entrance_sensors_error_alarm_red_diode.TabIndex = 78;
+            this.entrance_sensors_error_alarm_red_diode.TabStop = false;
+            // 
+            // control_system_error_alarm_red_diode
+            // 
+            this.control_system_error_alarm_red_diode.Image = ((System.Drawing.Image)(resources.GetObject("control_system_error_alarm_red_diode.Image")));
+            this.control_system_error_alarm_red_diode.Location = new System.Drawing.Point(568, 68);
+            this.control_system_error_alarm_red_diode.Name = "control_system_error_alarm_red_diode";
+            this.control_system_error_alarm_red_diode.Size = new System.Drawing.Size(35, 35);
+            this.control_system_error_alarm_red_diode.TabIndex = 79;
+            this.control_system_error_alarm_red_diode.TabStop = false;
+            // 
+            // engine_error_alarm_red_diode
+            // 
+            this.engine_error_alarm_red_diode.Image = ((System.Drawing.Image)(resources.GetObject("engine_error_alarm_red_diode.Image")));
+            this.engine_error_alarm_red_diode.Location = new System.Drawing.Point(568, 16);
+            this.engine_error_alarm_red_diode.Name = "engine_error_alarm_red_diode";
+            this.engine_error_alarm_red_diode.Size = new System.Drawing.Size(35, 35);
+            this.engine_error_alarm_red_diode.TabIndex = 80;
+            this.engine_error_alarm_red_diode.TabStop = false;
+            // 
+            // algorithm_error_green_diode
+            // 
+            this.algorithm_error_green_diode.Image = ((System.Drawing.Image)(resources.GetObject("algorithm_error_green_diode.Image")));
+            this.algorithm_error_green_diode.Location = new System.Drawing.Point(568, 176);
+            this.algorithm_error_green_diode.Name = "algorithm_error_green_diode";
+            this.algorithm_error_green_diode.Size = new System.Drawing.Size(35, 35);
+            this.algorithm_error_green_diode.TabIndex = 81;
+            this.algorithm_error_green_diode.TabStop = false;
+            // 
+            // entrance_sensors_error_alarm_green_diode
+            // 
+            this.entrance_sensors_error_alarm_green_diode.Image = ((System.Drawing.Image)(resources.GetObject("entrance_sensors_error_alarm_green_diode.Image")));
+            this.entrance_sensors_error_alarm_green_diode.Location = new System.Drawing.Point(568, 120);
+            this.entrance_sensors_error_alarm_green_diode.Name = "entrance_sensors_error_alarm_green_diode";
+            this.entrance_sensors_error_alarm_green_diode.Size = new System.Drawing.Size(35, 35);
+            this.entrance_sensors_error_alarm_green_diode.TabIndex = 82;
+            this.entrance_sensors_error_alarm_green_diode.TabStop = false;
+            // 
+            // control_system_error_alarm_green_diode
+            // 
+            this.control_system_error_alarm_green_diode.Image = ((System.Drawing.Image)(resources.GetObject("control_system_error_alarm_green_diode.Image")));
+            this.control_system_error_alarm_green_diode.Location = new System.Drawing.Point(568, 68);
+            this.control_system_error_alarm_green_diode.Name = "control_system_error_alarm_green_diode";
+            this.control_system_error_alarm_green_diode.Size = new System.Drawing.Size(35, 35);
+            this.control_system_error_alarm_green_diode.TabIndex = 83;
+            this.control_system_error_alarm_green_diode.TabStop = false;
+            // 
+            // engine_error_alarm_green_diode
+            // 
+            this.engine_error_alarm_green_diode.Image = ((System.Drawing.Image)(resources.GetObject("engine_error_alarm_green_diode.Image")));
+            this.engine_error_alarm_green_diode.Location = new System.Drawing.Point(568, 16);
+            this.engine_error_alarm_green_diode.Name = "engine_error_alarm_green_diode";
+            this.engine_error_alarm_green_diode.Size = new System.Drawing.Size(35, 35);
+            this.engine_error_alarm_green_diode.TabIndex = 84;
+            this.engine_error_alarm_green_diode.TabStop = false;
+            // 
+            // label21
+            // 
+            this.label21.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.label21.Location = new System.Drawing.Point(551, 375);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(275, 2);
+            this.label21.TabIndex = 85;
+            this.label21.Text = "label21";
+            // 
+            // label22
+            // 
+            this.label22.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.label22.Location = new System.Drawing.Point(912, 440);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(275, 2);
+            this.label22.TabIndex = 86;
+            this.label22.Text = "label22";
+            // 
+            // label23
+            // 
+            this.label23.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.label23.Location = new System.Drawing.Point(184, 440);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(275, 2);
+            this.label23.TabIndex = 87;
+            this.label23.Text = "label23";
+            // 
+            // label24
+            // 
+            this.label24.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.label24.Location = new System.Drawing.Point(184, 649);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(275, 2);
+            this.label24.TabIndex = 88;
+            this.label24.Text = "label24";
+            // 
+            // label25
+            // 
+            this.label25.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.label25.Location = new System.Drawing.Point(184, 857);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(275, 2);
+            this.label25.TabIndex = 89;
+            this.label25.Text = "label25";
+            // 
+            // label26
+            // 
+            this.label26.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.label26.Location = new System.Drawing.Point(912, 649);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(275, 2);
+            this.label26.TabIndex = 90;
+            this.label26.Text = "label26";
+            // 
+            // label27
+            // 
+            this.label27.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.label27.Location = new System.Drawing.Point(912, 857);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(275, 2);
+            this.label27.TabIndex = 91;
+            this.label27.Text = "label27";
+            // 
+            // label28
+            // 
+            this.label28.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.label28.Location = new System.Drawing.Point(551, 930);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(275, 2);
+            this.label28.TabIndex = 92;
+            this.label28.Text = "label28";
+            // 
+            // entrance_weight
+            // 
+            this.entrance_weight.AutoSize = true;
+            this.entrance_weight.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
+            this.entrance_weight.Location = new System.Drawing.Point(1111, 29);
+            this.entrance_weight.Name = "entrance_weight";
+            this.entrance_weight.Size = new System.Drawing.Size(63, 24);
+            this.entrance_weight.TabIndex = 93;
+            this.entrance_weight.Text = "Waga";
+            // 
+            // arrow_right
+            // 
+            this.arrow_right.Image = ((System.Drawing.Image)(resources.GetObject("arrow_right.Image")));
+            this.arrow_right.Location = new System.Drawing.Point(1224, 103);
+            this.arrow_right.Name = "arrow_right";
+            this.arrow_right.Size = new System.Drawing.Size(155, 160);
+            this.arrow_right.TabIndex = 94;
+            this.arrow_right.TabStop = false;
+            // 
+            // arrow_left
+            // 
+            this.arrow_left.Image = ((System.Drawing.Image)(resources.GetObject("arrow_left.Image")));
+            this.arrow_left.Location = new System.Drawing.Point(1063, 103);
+            this.arrow_left.Name = "arrow_left";
+            this.arrow_left.Size = new System.Drawing.Size(155, 160);
+            this.arrow_left.TabIndex = 95;
+            this.arrow_left.TabStop = false;
             // 
             // Visualization
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1392, 976);
+            this.Controls.Add(this.arrow_left);
+            this.Controls.Add(this.arrow_right);
+            this.Controls.Add(this.entrance_weight);
+            this.Controls.Add(this.label28);
+            this.Controls.Add(this.label27);
+            this.Controls.Add(this.label26);
+            this.Controls.Add(this.label25);
+            this.Controls.Add(this.label24);
+            this.Controls.Add(this.label23);
+            this.Controls.Add(this.label22);
+            this.Controls.Add(this.label21);
+            this.Controls.Add(this.engine_error_alarm_green_diode);
+            this.Controls.Add(this.control_system_error_alarm_green_diode);
+            this.Controls.Add(this.entrance_sensors_error_alarm_green_diode);
+            this.Controls.Add(this.algorithm_error_green_diode);
+            this.Controls.Add(this.engine_error_alarm_red_diode);
+            this.Controls.Add(this.control_system_error_alarm_red_diode);
+            this.Controls.Add(this.entrance_sensors_error_alarm_red_diode);
+            this.Controls.Add(this.algorithm_error_red_diode);
+            this.Controls.Add(this.label20);
+            this.Controls.Add(this.label19);
+            this.Controls.Add(this.label18);
+            this.Controls.Add(this.label17);
+            this.Controls.Add(this.label16);
+            this.Controls.Add(this.label15);
+            this.Controls.Add(this.label14);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.plc_run_red_diode);
+            this.Controls.Add(this.plc_error_red_diode);
+            this.Controls.Add(this.plc_diagnosing_red_diode);
+            this.Controls.Add(this.plc_link_red_diode);
+            this.Controls.Add(this.plc_rxtx_red_diode);
+            this.Controls.Add(this.plc_run_green_diode);
+            this.Controls.Add(this.plc_error_green_diode);
+            this.Controls.Add(this.plc_diagnosing_green_diode);
+            this.Controls.Add(this.plc_link_green_diode);
+            this.Controls.Add(this.plc_rxtx_green_diode);
             this.Controls.Add(this.First_Car_Weight);
             this.Controls.Add(this.Fourth_Car_Weight);
             this.Controls.Add(this.Fifth_Car_Weight);
@@ -701,7 +1141,6 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.Weight_Indicator);
             this.Controls.Add(this.First_Place_Red_Diode);
             this.Controls.Add(this.Zero_Place_Red_Diode);
             this.Controls.Add(this.Seventh_Place_Red_Diode);
@@ -779,6 +1218,26 @@
             ((System.ComponentModel.ISupportInitialize)(this.First_Place_Red_Diode)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Alarm_Red_Diode)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Alarm_Green_Diode)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.plc_rxtx_green_diode)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.plc_link_green_diode)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.plc_diagnosing_green_diode)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.plc_error_green_diode)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.plc_run_green_diode)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.plc_rxtx_red_diode)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.plc_link_red_diode)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.plc_diagnosing_red_diode)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.plc_error_red_diode)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.plc_run_red_diode)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.algorithm_error_red_diode)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.entrance_sensors_error_alarm_red_diode)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.control_system_error_alarm_red_diode)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.engine_error_alarm_red_diode)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.algorithm_error_green_diode)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.entrance_sensors_error_alarm_green_diode)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.control_system_error_alarm_green_diode)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.engine_error_alarm_green_diode)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.arrow_right)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.arrow_left)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -822,7 +1281,6 @@
         private System.Windows.Forms.PictureBox Seventh_Place_Red_Diode;
         private System.Windows.Forms.PictureBox Zero_Place_Red_Diode;
         private System.Windows.Forms.PictureBox First_Place_Red_Diode;
-        private WeightIndicator Weight_Indicator;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -844,5 +1302,43 @@
         private System.Windows.Forms.Label Fifth_Car_Weight;
         private System.Windows.Forms.Label Fourth_Car_Weight;
         private System.Windows.Forms.Label First_Car_Weight;
+        private System.Windows.Forms.PictureBox plc_rxtx_green_diode;
+        private System.Windows.Forms.PictureBox plc_link_green_diode;
+        private System.Windows.Forms.PictureBox plc_diagnosing_green_diode;
+        private System.Windows.Forms.PictureBox plc_error_green_diode;
+        private System.Windows.Forms.PictureBox plc_run_green_diode;
+        private System.Windows.Forms.PictureBox plc_rxtx_red_diode;
+        private System.Windows.Forms.PictureBox plc_link_red_diode;
+        private System.Windows.Forms.PictureBox plc_diagnosing_red_diode;
+        private System.Windows.Forms.PictureBox plc_error_red_diode;
+        private System.Windows.Forms.PictureBox plc_run_red_diode;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.PictureBox algorithm_error_red_diode;
+        private System.Windows.Forms.PictureBox entrance_sensors_error_alarm_red_diode;
+        private System.Windows.Forms.PictureBox control_system_error_alarm_red_diode;
+        private System.Windows.Forms.PictureBox engine_error_alarm_red_diode;
+        private System.Windows.Forms.PictureBox algorithm_error_green_diode;
+        private System.Windows.Forms.PictureBox entrance_sensors_error_alarm_green_diode;
+        private System.Windows.Forms.PictureBox control_system_error_alarm_green_diode;
+        private System.Windows.Forms.PictureBox engine_error_alarm_green_diode;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Label entrance_weight;
+        private System.Windows.Forms.PictureBox arrow_right;
+        private System.Windows.Forms.PictureBox arrow_left;
     }
 }

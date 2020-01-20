@@ -58,7 +58,7 @@ namespace OPCServer1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 35F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label1.Location = new System.Drawing.Point(293, 0);
+            this.label1.Location = new System.Drawing.Point(46, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(232, 54);
             this.label1.TabIndex = 1;
@@ -66,7 +66,7 @@ namespace OPCServer1
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(3, 20);
+            this.button1.Location = new System.Drawing.Point(335, 20);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(98, 23);
             this.button1.TabIndex = 2;
@@ -76,21 +76,21 @@ namespace OPCServer1
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(105, 20);
+            this.button2.Location = new System.Drawing.Point(619, 20);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(90, 23);
             this.button2.TabIndex = 3;
-            this.button2.Text = "Przybliż Widok";
+            this.button2.Text = "Oddal Widok";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.Button2_Click);
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(201, 20);
+            this.button3.Location = new System.Drawing.Point(479, 20);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(86, 23);
             this.button3.TabIndex = 4;
-            this.button3.Text = "Oddal Widok";
+            this.button3.Text = "Przybliż Widok";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.Button3_Click);
             // 
