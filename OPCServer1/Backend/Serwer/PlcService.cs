@@ -14,8 +14,6 @@ namespace OPCServer1.Backend.Serwer
     {
         
         private DB3 Db3;
-        private static bool isPlcConnected = false;
-
 
         public PlcService()
         {
@@ -25,8 +23,7 @@ namespace OPCServer1.Backend.Serwer
 
         public bool OpenConnection(CpuType plcCpuType, string ipAdress, short rack, short slot)
         {
-            isPlcConnected = Db3.OpenConnection(plcCpuType, ipAdress, rack, slot);
-            return isPlcConnected;
+            return Db3.OpenConnection(plcCpuType, ipAdress, rack, slot);
         }
 
         public PlcDataPackage ReadPlcDataPackage()
@@ -71,11 +68,6 @@ namespace OPCServer1.Backend.Serwer
                     break;
             }
             
-        }
-
-        public static bool IsPlcConnected()
-        {
-            return isPlcConnected;
         }
 
     }

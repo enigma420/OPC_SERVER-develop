@@ -74,13 +74,13 @@ namespace OPCServer1
             try
             {
                 connection.Open();
-                MessageBox.Show("UDAŁO SIĘ POŁĄCZYĆ Z BAZĄ DANYCH");
+                //MessageBox.Show("UDAŁO SIĘ POŁĄCZYĆ Z BAZĄ DANYCH");
                 isDbConnected = true;
                 return true;
             }
             catch (MySqlException ex)
          {
-                MessageBox.Show("NIE UDAŁO SIĘ POŁĄCZYĆ Z BAZĄ DANYCH");
+                //MessageBox.Show("NIE UDAŁO SIĘ POŁĄCZYĆ Z BAZĄ DANYCH");
                 isDbConnected = false;
                 return false;
             }

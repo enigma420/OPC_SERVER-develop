@@ -17,18 +17,34 @@ namespace OPCServer1
 {
     public partial class Visualization : Form
     {
+        private static Visualization Instance = null;
         private static PlcDataPackage data;
       
 
         public Visualization()
         {
             InitializeComponent();
+            Instance = this;
         }
 
 
         public static void SetNewPlcDataPackage(PlcDataPackage newData)
         {
-            data = newData;
+            try
+            {
+                data = newData;
+                Instance.updateVisualizationData();
+            } catch(NullReferenceException ex)
+            {
+                //błąd występuje jak użytkonik nie otworzyl wizualizacji
+                Console.WriteLine("Visualization is not open, err: {0}", ex);
+            }
+            
+        }
+
+        private void updateVisualizationData()
+        {
+            MainLogic();
         }
 
         public void WeightLogic(int i)

@@ -15,7 +15,7 @@ namespace OPCServer1
 {
     partial class CurrentlyMeasurement : UserControl
     {
-        public static CurrentlyMeasurement Instance = null;
+        private static CurrentlyMeasurement Instance = null;
      
         public CurrentlyMeasurement()
         {

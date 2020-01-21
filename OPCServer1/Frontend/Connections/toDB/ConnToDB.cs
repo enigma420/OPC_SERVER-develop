@@ -83,7 +83,6 @@ namespace OPCServer1.Forms
                 History.UpdateDatabaseConnectionData("","","","");
                 Diagrams.UpdateDatabaseConnectionData("", "", "", "");
                 Dashboard.UpdateDatabaseConnectedStatus(false);
-
             }
             else
             {

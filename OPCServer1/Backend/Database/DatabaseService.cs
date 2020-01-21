@@ -15,7 +15,6 @@ namespace OPCServer1
 {
     class DatabaseService
     {
-
         private MeasurementDatabase MeasurementDatabase;
         private PlcService PlcSrv;
         private bool isDbConnected = false;
@@ -26,7 +25,7 @@ namespace OPCServer1
             MeasurementDatabase = new MeasurementDatabase();
             PlcSrv = new PlcService();
             isDbConnected = MeasurementDatabase.IsDbConnected();
-            isPlcConnected = PlcService.IsPlcConnected();
+            isPlcConnected = false;
             RunReadAndWriteToDbPlcDataPackageIntervalRoutine();
         }
 
@@ -40,13 +39,14 @@ namespace OPCServer1
             {
                 Console.WriteLine("Error while updating database service: {0}", ex.ToString());
             }
+
             testSetNewDataPackageVisualizationAndCurrentlyMeasurment();
 
         }
 
-        public static void UpdateIsPlcConnected()
+        public static void UpdateIsPlcConnected(bool isConnected)
         {
-            isPlcConnected = PlcService.IsPlcConnected();
+            isPlcConnected = isConnected;
         }
 
         public bool IsDbConnected()
@@ -104,6 +104,7 @@ namespace OPCServer1
 
             MeasurementDatabase.CreatePlcDataPackage(dataPackage);
             Visualization.SetNewPlcDataPackage(dataPackage);
+            Diagrams.SetNewSpeedAndTimeData(dataPackage.Ramp_actual_speed_freq, dataPackage.Time.ToOADate());
             CurrentlyMeasurement.CurrentlyMeasurement_LoadOne(dataPackage);
 
         }
@@ -205,6 +206,7 @@ namespace OPCServer1
 
             Visualization.SetNewPlcDataPackage(data);
             CurrentlyMeasurement.CurrentlyMeasurement_LoadOne(data);
+            Diagrams.SetNewSpeedAndTimeData(data.Ramp_actual_speed_freq, data.Time.ToOADate());
         }
 
         public MySqlDataReader GetNewestMeasurment()
