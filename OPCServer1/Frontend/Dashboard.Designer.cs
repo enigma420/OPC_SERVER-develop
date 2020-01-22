@@ -140,7 +140,7 @@
             // button7
             // 
             this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button7.Location = new System.Drawing.Point(710, 12);
+            this.button7.Location = new System.Drawing.Point(642, 12);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(68, 35);
             this.button7.TabIndex = 13;
@@ -151,7 +151,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(784, 13);
+            this.label4.Location = new System.Drawing.Point(716, 13);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(72, 13);
             this.label4.TabIndex = 14;
@@ -160,7 +160,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(784, 34);
+            this.label5.Location = new System.Drawing.Point(716, 34);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(80, 13);
             this.label5.TabIndex = 15;
@@ -169,7 +169,7 @@
             // DbStatusLabel
             // 
             this.DbStatusLabel.AutoSize = true;
-            this.DbStatusLabel.Location = new System.Drawing.Point(864, 13);
+            this.DbStatusLabel.Location = new System.Drawing.Point(802, 13);
             this.DbStatusLabel.Name = "DbStatusLabel";
             this.DbStatusLabel.Size = new System.Drawing.Size(71, 13);
             this.DbStatusLabel.TabIndex = 16;
@@ -219,7 +219,7 @@
             // PlcStatusLabel
             // 
             this.PlcStatusLabel.AutoSize = true;
-            this.PlcStatusLabel.Location = new System.Drawing.Point(870, 34);
+            this.PlcStatusLabel.Location = new System.Drawing.Point(802, 34);
             this.PlcStatusLabel.Name = "PlcStatusLabel";
             this.PlcStatusLabel.Size = new System.Drawing.Size(71, 13);
             this.PlcStatusLabel.TabIndex = 19;

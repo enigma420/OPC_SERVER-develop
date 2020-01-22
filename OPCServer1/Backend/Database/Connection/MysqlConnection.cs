@@ -173,7 +173,7 @@ namespace OPCServer1
             }
             query = query.Substring(0, query.Length - 2);
             query += ");";
-            Console.WriteLine(query);
+            //Console.WriteLine(query);
             return query;
         }
 
@@ -190,7 +190,7 @@ namespace OPCServer1
             try
             {
                 var result = cmd.ExecuteScalar();
-                Console.WriteLine("Result: {0}", result);
+                //Console.WriteLine("Result: {0}", result);
             }  catch (MySqlException ex)
             {
                 Console.WriteLine("Error: {0} \nMessage: {1}", ex.ToString(), ex.Message.ToString());
@@ -234,60 +234,6 @@ namespace OPCServer1
         {
             Dictionary<string, string> resultMap;
         }
-
-        //private Dictionary<string, string>[] parseMySqlDataReaderToArrayMap(MySqlDataReader reader)
-        //{
-        //    int count = 0;
-        //    Dictionary<string, string>[] dic = new Dictionary<string, string>[10000];
-
-        //    if (reader != null && reader.HasRows)
-        //    {
-        //        while (reader.Read())
-        //        {
-        //            foreach (r)
-        //        }
-        //    }
-            
-
-        //    List <dic> = new List<results>();
-        //}
-
-        public DataTable GetData(string selectCommand)
-        {
-            MySqlDataAdapter dataAdapter = null;
-            DataTable table = new DataTable();
-
-            try
-            {
-                // Specify a connection string. Replace the given value with a 
-                // valid connection string for a Northwind SQL Server sample
-                // database accessible to your system.
-
-                //string connectionString;
-                //connectionString = "SERVER=" + Server + ";" + "DATABASE=" +
-                //Database + ";" + "UID=" + Uid + ";" + "PASSWORD=" + Password + ";";
-
-                // Create a new data adapter based on the specified query.
-                //dataAdapter = new MySqlDataAdapter(selectCommand, getConnectionString());
-
-                // Create a command builder to generate SQL update, insert, and
-                // delete commands based on selectCommand. These are used to
-                // update the database.
-                MySqlCommandBuilder commandBuilder = new MySqlCommandBuilder(dataAdapter);
-
-                // Populate a new data table and bind it to the BindingSource.
-                
-                table.Locale = System.Globalization.CultureInfo.InvariantCulture;
-                dataAdapter.Fill(table);
-
-
-            }
-            catch (MySqlException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-
-            return table;        }
 
     }
 

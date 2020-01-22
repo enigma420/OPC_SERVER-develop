@@ -12,7 +12,7 @@ namespace OPCServer1
     class MeasurementDatabase
     {
        
-        static String PLC_DATA_PACKAGE = "PLC_DATA_PACKAGE_TABLE";
+        static String PLC_DATA_PACKAGE = "PLC_DATA_PACKAGE_TABLE2";
 
         MysqlConnection Connection = null;
 
@@ -321,12 +321,6 @@ namespace OPCServer1
             return values.ToArray(typeof(string)) as string[];
         }
 
-        public MySqlDataReader GetNewestMeasurment()
-        {
-            String query = "SELECT * FROM " + PLC_DATA_PACKAGE + " WHERE plc_data_package_id=(SELECT MAX(plc_data_package_id) FROM " + PLC_DATA_PACKAGE + ");";
-            return Connection.ExecuteReader(query);
-        }
-
         public MySqlDataReader GetAllSpeedAndTimeData()
         {
             String query = "SELECT plc_data_package_id, ramp_actual_speed_freq, time FROM " + PLC_DATA_PACKAGE + ";";
@@ -334,21 +328,9 @@ namespace OPCServer1
           
         }
 
-        public MySqlDataReader GetNewestSpeedAndTimeData()
-        {
-            String query = "SELECT plc_data_package_id, ramp_actual_speed_freq, time FROM " + PLC_DATA_PACKAGE + " WHERE plc_data_package_id=(SELECT MAX(plc_data_package_id) FROM " + PLC_DATA_PACKAGE + ");";
-            return Connection.ExecuteReader(query);
-
-        }
-
         public bool CloseConnection()
         {
             return Connection.closeConnection();
-        }
-
-        public DataTable GetData(string selectCommand)
-        {
-            return Connection.GetData(selectCommand);
         }
     }
 }

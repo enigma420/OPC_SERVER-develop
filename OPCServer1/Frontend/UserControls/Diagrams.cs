@@ -128,13 +128,13 @@ namespace OPCServer1
         private void AddNewestSpeedAndTimeData(double speed, double time)
         {
             GraphPane myPane = zedGraphControl1.GraphPane;
-            //if (myPane.CurveList.Count <= 0)
-            //    return;
 
-            Console.WriteLine("Adding speed: {0} time: {1}", speed, time);
+            //Console.WriteLine("Adding speed: {0} time: {1}", speed, time);
             ((IPointListEdit)myPane.CurveList[0].Points).Add(speed,time);
 
+            zedGraphControl1.AxisChange();
             zedGraphControl1.Invalidate();
+            //zedGraphControl1.Refresh();
         }
 
 

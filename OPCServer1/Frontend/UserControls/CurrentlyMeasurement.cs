@@ -61,7 +61,6 @@ namespace OPCServer1
         {
             this.Invoke((MethodInvoker)delegate ()
             {
-                Console.WriteLine("Occupancy0: {0}", data.Occupancy0);
                 checkBox24.Checked = data.Occupancy0;
                 checkBox23.Checked = data.Occupancy1;
                 checkBox22.Checked = data.Occupancy2;

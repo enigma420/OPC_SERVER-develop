@@ -17,10 +17,10 @@ namespace OPCServer1
         private DataGridView dataGridView1;
         private BindingSource bindingSource1;
         private MySqlDataAdapter dataAdapter;
-        private static String Server = "";
-        private static String Database = "";
-        private static String Uid = "";
-        private static String Password = "";
+        private static String Server = "localhost";
+        private static String Database = "serveropc";
+        private static String Uid = "dominik";
+        private static String Password = "Qwerty123";
 
         public History()
         {

@@ -18,10 +18,7 @@ namespace OPCServer1.Backend.Database
         {
             PlcConnection = new Plc(PlcCpuType, IpAdress, Rack , Slot);
             PlcConnection.Open();
-            //if (result != ErrorCode.NoError)
-            //{
-            //    Console.WriteLine("Error: " + PlcConnection.LastErrorCode + "\n" + PlcConnection.LastErrorString);
-            //}
+        
         }
 
         public bool OpenConnection(CpuType plcCpuType, string ipAdress, short rack, short slot)
@@ -43,30 +40,12 @@ namespace OPCServer1.Backend.Database
             return true;
         }
 
-        public bool ReadSingleVariableBool(string dataBlockVariable)
-        {
-            return (bool)PlcConnection.Read(dataBlockVariable);
-        }
-
-        public uint ReadSingleVariableUint(string dataBlockVariable)
-        {
-            return (uint)PlcConnection.Read(dataBlockVariable);
-        }
-
-        public void WriteSingleVariableBool(string dataBlockVariable, bool value)
+        public void WriteSingleVariableBool(string dataBlockVariable, int value)
         {
             PlcConnection.Write(dataBlockVariable, value);
+            Console.WriteLine("dataBlock:{0} , value:{1}", dataBlockVariable, value);
         }
 
-        public void WriteSingleVariableUint(string dataBlockVariable, uint value)
-        {
-            PlcConnection.Write(dataBlockVariable, value);
-        }
-
-        //public PlcDataPackage ReadPlcBytesDataPackage()
-        //{
-
-        //}
 
         public PlcDataPackage ReadPlcDataBytesPackage()
         {
@@ -74,10 +53,11 @@ namespace OPCServer1.Backend.Database
             try
             {
                 plcDataPackage = ReadBytess(PlcConnection);
-                Console.WriteLine("Dane zostaja zczytane");
+                //Console.WriteLine("Dane zostaja zczytane");
+                Console.WriteLine(plcDataPackage.Ramp_actual_speed_freq);
             } catch (Exception ex)
             {
-                Console.WriteLine("Nie polaczony z PLC , Nie mozna zczytac danych: {0}",ex); //Console.WriteLine("Error: " + PlcConnection.LastErrorCode + "\n" + PlcConnection.LastErrorString);
+                //Console.WriteLine("Nie polaczony z PLC , Nie mozna zczytac danych: {0}",ex); //Console.WriteLine("Error: " + PlcConnection.LastErrorCode + "\n" + PlcConnection.LastErrorString);
             }
             return plcDataPackage;
         }
@@ -200,65 +180,70 @@ namespace OPCServer1.Backend.Database
 
             //     Console.WriteLine("\n--- INT ---\n");
 
-            data.Vehicle_weight = ((ushort)plc.Read("DB14.DBW2.0")).ConvertToShort();
+            data.Vehicle_weight = ((ushort)plc.Read("DB14.DBW4.0")).ConvertToShort();
             //     Console.WriteLine("DB14.DBW2.0: " + db14IntVariable1);
-            data.Platform_to_rotate_down = ((ushort)plc.Read("DB14.DBW4.0")).ConvertToShort();
+            data.Platform_to_rotate_down = ((ushort)plc.Read("DB14.DBW6.0")).ConvertToShort();
             //     Console.WriteLine("DB14.DBW4.0: " + db14IntVariable2);
-            data.Rotation_angle = ((ushort)plc.Read("DB14.DBW6.0")).ConvertToShort();
+            data.Rotation_angle = ((ushort)plc.Read("DB14.DBW8.0")).ConvertToShort();
             //     Console.WriteLine("DB14.DBW6.0: " + db14IntVariable3);
 
             //      Console.WriteLine("\n--- DINT ---\n");
 
-            data.Rotation_time = ((uint)plc.Read("DB14.DBD8.0")).ConvertToInt();
+            data.Rotation_time = ((uint)plc.Read("DB14.DBD10.0")).ConvertToInt();
             //     Console.WriteLine("DB14.DBD8.0: " + db14DintVariable1);
 
             //      Console.WriteLine("\n--- REAL ---\n");
 
-            data.Ramp_command_speed_freq = ((uint)plc.Read("DB14.DBD12.0")).ConvertToDouble();
+            data.Ramp_command_speed_freq = ((uint)plc.Read("DB14.DBD14.0")).ConvertToDouble();
             //     Console.WriteLine("DB14.DBD12.0: " + db14RealVariable1);
-            data.Ramp_engine_speed_freq = ((uint)plc.Read("DB14.DBD16.0")).ConvertToDouble();
+            data.Ramp_engine_speed_freq = ((uint)plc.Read("DB14.DBD18.0")).ConvertToDouble();
             //     Console.WriteLine("DB14.DBD16.0: " + db14RealVariable2);
-            data.Ramp_actual_speed_freq = ((uint)plc.Read("DB14.DBD20.0")).ConvertToDouble();
+            data.Ramp_actual_speed_freq = ((uint)plc.Read("DB14.DBD22.0")).ConvertToDouble();
             //      Console.WriteLine("DB14.DBD20.0: " + db14RealVariable3);
-            data.Minimum_weight = ((uint)plc.Read("DB14.DBD24.0")).ConvertToDouble();
+            data.Minimum_weight = ((uint)plc.Read("DB14.DBD26.0")).ConvertToDouble();
             //     Console.WriteLine("DB14.DBD12.0: " + db14RealVariable1);
-            data.Boundary_weight = ((uint)plc.Read("DB14.DBD28.0")).ConvertToDouble();
+            data.Boundary_weight = ((uint)plc.Read("DB14.DBD30.0")).ConvertToDouble();
             //     Console.WriteLine("DB14.DBD16.0: " + db14RealVariable2);
-            data.Maximum_weight = ((uint)plc.Read("DB14.DBD32.0")).ConvertToDouble();
+            data.Maximum_weight = ((uint)plc.Read("DB14.DBD34.0")).ConvertToDouble();
             //      Console.WriteLine("DB14.DBD20.0: " + db14RealVariable3);
 
             //     Console.WriteLine("\n--- WORD ---\n");
 
-            data.Inventer_status = ((ushort)plc.Read("DB14.DBW36.0")).ConvertToShort();
+            data.Inventer_status = ((ushort)plc.Read("DB14.DBW38.0")).ConvertToShort();
             //     Console.WriteLine("DB14.DBW24.0: " + db14WordVariable1);
-            data.Inventer_command_speed = ((ushort)plc.Read("DB14.DBW38.0")).ConvertToShort();
+            data.Inventer_command_speed = ((ushort)plc.Read("DB14.DBW40.0")).ConvertToShort();
             //    Console.WriteLine("DB14.DBW28.0: " + db14WordVariable2);
-            data.Inventer_actual_speed = ((ushort)plc.Read("DB14.DBW40.0")).ConvertToShort();
+            data.Inventer_actual_speed = ((ushort)plc.Read("DB14.DBW42.0")).ConvertToShort();
             //    Console.WriteLine("DB14.DBW32.0: " + db14WordVariable3);
+
+
 
 
             //Diagnostyczne DB29 inty
             //0.0
-            data.RunStop = (int)plc.Read("");
-            data.RxTx = (int)plc.Read("");
-            data.link = (int)plc.Read("");
-            data.error = (int)plc.Read("");
-            data.maint = (int)plc.Read("");
-            data.RunTimeCycle = (bool)plc.Read("");
-            data.WriteLocalTime = (bool)plc.Read("");
+            data.RunStop = ((ushort)plc.Read("DB29.DBW0.0")).ConvertToShort();
+            data.RxTx = ((ushort)plc.Read("DB29.DBW2.0")).ConvertToShort();
+            data.link = ((ushort)plc.Read("DB29.DBW4.0")).ConvertToShort();
+            data.error = ((ushort)plc.Read("DB29.DBW6.0")).ConvertToShort();
+            data.maint = ((ushort)plc.Read("DB29.DBW8.0")).ConvertToShort();
+            data.RunTimeCycle = ((uint)plc.Read("DB14.DBD18.0")).ConvertToDouble();
+            data.WriteLocalTime = ((ushort)plc.Read("DB29.DBW26.0")).ConvertToShort();
             //Alarmowe DB16 od 0.0 do 1.3
-            data.engineError_Alarm = (bool)plc.Read("");
-            data.engineError_alarmReset = (bool)plc.Read("");
-            data.engineError_Notify = (bool)plc.Read("");
-            data.engineError_notifyReset = (bool)plc.Read("");
-            data.controlSystemError_Alarm = (bool)plc.Read("");
-            data.controlSystemError_alarmReset = (bool)plc.Read("");
-            data.controlSystemError_Notify = (bool)plc.Read("");
-            data.controlSystemError_notifyReset = (bool)plc.Read("");
-            data.entranceSensorError_Alarm = (bool)plc.Read("");
-            data.entranceSensorError_alarmReset = (bool)plc.Read("");
-            data.vehicleTooHeavy = (bool)plc.Read("");
-            data.Error_Alarm = (bool)plc.Read("");
+
+            var db16Bytes = (byte[])plc.Read(DataType.DataBlock, 16, 0, VarType.Byte, 2);
+
+            data.engineError_Alarm = db16Bytes[0].SelectBit(0);
+            data.engineError_alarmReset = db16Bytes[0].SelectBit(1);
+            data.engineError_Notify = db16Bytes[0].SelectBit(2);
+            data.engineError_notifyReset = db16Bytes[0].SelectBit(3);
+            data.controlSystemError_Alarm = db16Bytes[0].SelectBit(4);
+            data.controlSystemError_alarmReset = db16Bytes[0].SelectBit(5);
+            data.controlSystemError_Notify = db16Bytes[0].SelectBit(6);
+            data.controlSystemError_notifyReset = db16Bytes[0].SelectBit(7);
+            data.entranceSensorError_Alarm = db16Bytes[1].SelectBit(0);
+            data.entranceSensorError_alarmReset = db16Bytes[1].SelectBit(1);
+            data.vehicleTooHeavy = db16Bytes[1].SelectBit(2);
+            data.Error_Alarm = db16Bytes[1].SelectBit(3);
 
             data.Time = DateTime.Now;
 

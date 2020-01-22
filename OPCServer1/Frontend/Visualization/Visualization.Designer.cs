@@ -196,7 +196,7 @@
             // Rotor_2
             // 
             this.Rotor_2.Image = ((System.Drawing.Image)(resources.GetObject("Rotor_2.Image")));
-            this.Rotor_2.Location = new System.Drawing.Point(510, 423);
+            this.Rotor_2.Location = new System.Drawing.Point(510, 421);
             this.Rotor_2.Name = "Rotor_2";
             this.Rotor_2.Size = new System.Drawing.Size(350, 325);
             this.Rotor_2.TabIndex = 1;
@@ -1067,6 +1067,7 @@
             this.arrow_right.Size = new System.Drawing.Size(155, 160);
             this.arrow_right.TabIndex = 94;
             this.arrow_right.TabStop = false;
+            this.arrow_right.Click += new System.EventHandler(this.Arrow_right_Click);
             // 
             // arrow_left
             // 
@@ -1076,6 +1077,7 @@
             this.arrow_left.Size = new System.Drawing.Size(155, 160);
             this.arrow_left.TabIndex = 95;
             this.arrow_left.TabStop = false;
+            this.arrow_left.Click += new System.EventHandler(this.Arrow_left_Click);
             // 
             // Visualization
             // 

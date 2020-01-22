@@ -17,8 +17,8 @@ namespace OPCServer1.Backend.Serwer.Model
         public int link { get; set; }
         public int error { get; set; }
         public int maint { get; set; }
-        public bool RunTimeCycle { get; set; }
-        public bool WriteLocalTime { get; set; }
+        public double RunTimeCycle { get; set; }
+        public int WriteLocalTime { get; set; }
         //Alarmowe DB16 od 0.0 do 1.3
         public bool engineError_Alarm { get; set; }
         public bool engineError_alarmReset { get; set; }
@@ -61,8 +61,10 @@ namespace OPCServer1.Backend.Serwer.Model
         public bool Entrance_enabled { get; set; }
         public bool Entrance_big_vehicle { get; set; }
         public bool Entrance_small_vehicle { get; set; }
+        //Stan wysoki to jest right , zero to left
         public bool Left_right { get; set; }
         public bool Parking_in_move { get; set; }
+        //bedzie nastepowal wyjazd z parkingu
         public bool Parking_out { get; set; }
         public bool Out_enabled { get; set; }
         public bool Vehicle_too_heavy_for_small_platform { get; set; }

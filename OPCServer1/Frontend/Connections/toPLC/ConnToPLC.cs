@@ -48,7 +48,6 @@ namespace OPCServer1.Forms
            
 
             Dashboard.UpdatePlcConnectedStatus(plcStatus);
-            DatabaseService.UpdateIsPlcConnected(plcStatus);
         }
 
         private void textBox4_TextChanged(object sender, EventArgs e)

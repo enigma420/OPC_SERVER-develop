@@ -16,11 +16,13 @@ namespace OPCServer1.Forms
     public partial class Dashboard : Form
     {
         private static Dashboard Instance = null;
+        private PlcDatapackageUpdate2 plcDataUpdate = null;
 
         public Dashboard()
         {
             InitializeComponent();
             Instance = this;
+            plcDataUpdate = new PlcDatapackageUpdate2();
         }
 
         private void Button1_Click(object sender, EventArgs e)
@@ -53,7 +55,18 @@ namespace OPCServer1.Forms
             history1.Visible = true;
             currentlyMeasurement1.Visible = false;
             diagrams1.Visible = false;
+
+            Thread watek3 = new Thread(new ThreadStart(startTest));
+            watek3.Start();
         }
+
+        private void startTest()
+        {
+            Thread.Sleep(3000);
+            Console.WriteLine("Test started");
+            Instance.plcDataUpdate.startTest();
+        }
+
         private void Dashboard_Load(object sender, EventArgs e)
         {
             controllerValues1.Visible = false;
@@ -101,6 +114,11 @@ namespace OPCServer1.Forms
             f2.Show();
         }
 
+        public static void UpdateDatabaseServiceDbConnectionData(string server, string database, string uid, string password)
+        {
+            Instance.plcDataUpdate.UpdateDatabaseServiceDbConnectionData(server, database, uid, password);
+        }
+
         public static void UpdateDatabaseConnectedStatus(bool newDbStatus)
         {
             string dbStatus = "disconnected";
@@ -110,6 +128,8 @@ namespace OPCServer1.Forms
             }
 
             Instance.UpdateDbStatusLabel(dbStatus);
+            Instance.plcDataUpdate.UpdateIsDbConnected(newDbStatus);
+
         }
 
         private void UpdateDbStatusLabel(string isDbConnected)
@@ -120,22 +140,22 @@ namespace OPCServer1.Forms
             });
         }
 
-        public static void UpdatePlcConnectedStatus(bool newDbStatus)
+        public static void UpdatePlcConnectedStatus(bool newPlcStatus)
         {
-            string dbStatus = "disconnected";
-            if (newDbStatus)
+            string plcStatus = "disconnected";
+            if (newPlcStatus)
             {
-                dbStatus = "connected";
+                plcStatus = "connected";
             }
-            Instance.UpdatePlcStatusLabel(dbStatus);
-
+            Instance.UpdatePlcStatusLabel(plcStatus);
+            Instance.plcDataUpdate.UpdateIsPlcConnected(newPlcStatus);
         }
 
-        private void UpdatePlcStatusLabel(string isDbConnected)
+        private void UpdatePlcStatusLabel(string isPlcConnected)
         {
             this.Invoke((MethodInvoker)delegate ()
             {
-                PlcStatusLabel.Text = isDbConnected;
+                PlcStatusLabel.Text = isPlcConnected;
             });
         }
     }

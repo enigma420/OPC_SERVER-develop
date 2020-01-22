@@ -44,19 +44,21 @@ namespace OPCServer1
 
         private void updateVisualizationData()
         {
+            //Thread watek1 = new Thread(new ThreadStart(MainLogic));
+            //watek1.Start();
             MainLogic();
         }
 
         public void WeightLogic(int i)
         {
-
+            entrance_weight.Text = data.Vehicle_weight.ToString();
             if (data.Entrance_enabled)
             {
                 if (data.Entrance)
                 {
                     Entrance_Green_Diode.Visible = true;
                     Entrance_Red_Diode.Visible = false;
-                    entrance_weight.Text = data.Vehicle_weight.ToString();
+                   
                 }
                 else
                 {
@@ -436,20 +438,23 @@ namespace OPCServer1
         {
             if(data.Parking_in_move == true) 
             {
-                Rotor_2.Visible = false;
-                Rotor_1.Visible = true;
+                
+                    
+                    Rotor_1.Visible = true;
 
-                Thread.Sleep(20);
+                    Thread.Sleep(100);
 
-                Rotor_1.Visible = false;
-                Rotor_2.Visible = true;
+                  
+                    Rotor_2.Visible = true;
 
-                Thread.Sleep(20);
+                    
+                
+               
             }
             else
             {
                 Rotor_1.Visible = false;
-                Rotor_2.Visible = true;
+                Rotor_2.Visible = false;
             }
         }
 
@@ -476,13 +481,22 @@ namespace OPCServer1
             
         }
 
+
+        
+
+
+
         public void MainLogic()
         {
-            DiagnosticLogic();
-            AlarmsLogic();
-            RotorLogic();
-            DirectionMovement();
-            CarAndWeightAndDiodeLogic();
+
+            this.Invoke((MethodInvoker)delegate ()
+            {
+                DiagnosticLogic();
+                AlarmsLogic();
+                RotorLogic();
+                DirectionMovement();
+                CarAndWeightAndDiodeLogic();
+            });
 
         }
 
@@ -499,6 +513,16 @@ namespace OPCServer1
         private void Weight_Indicator_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void Arrow_right_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Arrow_left_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

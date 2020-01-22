@@ -45,6 +45,7 @@ namespace OPCServer1.Forms
 
             Diagrams.UpdateDatabaseConnectionData(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text);
 
+            Dashboard.UpdateDatabaseServiceDbConnectionData(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text);
             Dashboard.UpdateDatabaseConnectedStatus(dbStatus);
 
 
