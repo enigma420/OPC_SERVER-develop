@@ -49,7 +49,7 @@ namespace OPCServer1
             this.zedGraphControl1.ScrollMinX = 0D;
             this.zedGraphControl1.ScrollMinY = 0D;
             this.zedGraphControl1.ScrollMinY2 = 0D;
-            this.zedGraphControl1.Size = new System.Drawing.Size(783, 418);
+            this.zedGraphControl1.Size = new System.Drawing.Size(928, 524);
             this.zedGraphControl1.TabIndex = 0;
             this.zedGraphControl1.UseExtendedPrintDialog = true;
             this.zedGraphControl1.Load += new System.EventHandler(this.zedGraphControl1_Load);
@@ -102,7 +102,7 @@ namespace OPCServer1
             this.Controls.Add(this.label1);
             this.Controls.Add(this.zedGraphControl1);
             this.Name = "Diagrams";
-            this.Size = new System.Drawing.Size(789, 478);
+            this.Size = new System.Drawing.Size(934, 601);
             this.Load += new System.EventHandler(this.Diagrams_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -41,17 +41,13 @@ namespace OPCServer1.Forms
 
             bool dbStatus = databaseService.IsDbConnected();    
 
-            CurrentlyMeasurement.UpdateDatabaseService(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text);
-
             History.UpdateDatabaseConnectionData(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text);
 
             Diagrams.UpdateDatabaseConnectionData(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text);
 
+            Dashboard.UpdateDatabaseServiceDbConnectionData(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text);
             Dashboard.UpdateDatabaseConnectedStatus(dbStatus);
 
-
-            //to trzeba ogarnac jakos innym sposobem
-            //OPCServer1.Backend.Database.DatabaseService.UpdateDatabaseService(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text);
         }
 
 
@@ -82,12 +78,9 @@ namespace OPCServer1.Forms
             {
                 databaseService.CloseConnection();
 
-
-                CurrentlyMeasurement.UpdateDatabaseService("", "", "", "");
                 History.UpdateDatabaseConnectionData("","","","");
                 Diagrams.UpdateDatabaseConnectionData("", "", "", "");
                 Dashboard.UpdateDatabaseConnectedStatus(false);
-
             }
             else
             {

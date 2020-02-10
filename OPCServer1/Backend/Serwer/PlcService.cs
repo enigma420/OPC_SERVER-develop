@@ -8,151 +8,110 @@ using System.Text;
 using System.Threading.Tasks;
 using static OPCServer1.Backend.Serwer.Model.PlcDataPackage;
 
-namespace OPCServer1.Backend.Serwer
+namespace OPCServer1
 {
     public class PlcService
     {
         
-        private DB3 Db3;
-        private static bool isPlcConnected = false;
-
-        public struct Measurement
-        {
-            public bool Occupancy0 { get; set; }
-            public bool Occupancy1 { get; set; }
-            public bool Occupancy2 { get; set; }
-            public bool Occupancy3 { get; set; }
-            public bool Occupancy4 { get; set; }
-            public bool Occupancy5 { get; set; }
-            public bool Occupancy6 { get; set; }
-            public bool Occupancy7 { get; set; }
-            public bool PlatformSize0 { get; set; }
-            public bool PlatformSize1 { get; set; }
-            public bool PlatformSize2 { get; set; }
-            public bool PlatformSize3 { get; set; }
-            public bool PlatformSize4 { get; set; }
-            public bool PlatformSize5 { get; set; }
-            public bool PlatformSize6 { get; set; }
-            public bool PlatformSize7 { get; set; }
-            public bool SignalingTrips0 { get; set; }
-            public bool SignalingTrips1 { get; set; }
-            public bool SignalingTrips2 { get; set; }
-            public bool SignalingTrips3 { get; set; }
-            public bool SignalingTrips4 { get; set; }
-            public bool SignalingTrips5 { get; set; }
-            public bool SignalingTrips6 { get; set; }
-            public bool SignalingTrips7 { get; set; }
-            public bool Entrance { get; set; }
-            public bool Entrance_enabled { get; set; }
-            public bool Entrance_big_vehicle { get; set; }
-            public bool Entrance_small_vehicle { get; set; }
-            public bool Left_right { get; set; }
-            public bool Parking_in_move { get; set; }
-            public bool Parking_out { get; set; }
-            public bool Out_enabled { get; set; }
-            public bool Vehicle_too_heavy_for_small_platform { get; set; }
-            public bool Parking_occupied { get; set; }
-            public bool Big_platform_occupied { get; set; }
-
-
-            public int Weight0 { get; set; }
-            public int Weight1 { get; set; }
-            public int Weight2 { get; set; }
-            public int Weight3 { get; set; }
-            public int Weight4 { get; set; }
-            public int Weight5 { get; set; }
-            public int Weight6 { get; set; }
-            public int Weight7 { get; set; }
-
-
-            public int Vehicle_weight { get; set; }
-            public int Platform_to_rotate_down { get; set; }
-            public int Rotation_angle { get; set; }
-            public int Rotation_time { get; set; }
-
-            public double Ramp_command_speed_freq { get; set; }
-            public double Ramp_engine_speed_freq { get; set; }
-            public double Ramp_actual_speed_freq { get; set; }
-            public double Minimum_weight { get; set; }
-            public double Boundary_weight { get; set; }
-            public double Maximum_weight { get; set; }
-            public int Inventer_status { get; set; }
-            public int Inventer_command_speed { get; set; }
-            public int Inventer_actual_speed { get; set; }
-        }
-
-        private Measurement[] data;
-
-        public Measurement[] ExportData()
-        {
-            return data;
-        }
-
-        public Measurement[] DataProperty
-        {
-            get { return data; }
-        }
-
+        private PlcConn plcConn;
 
         public PlcService()
         {
             //tworze DB3 ale łącze się dopiero po wprowadzeniu danych
-            Db3 = new DB3();
+            plcConn = new PlcConn();
         }
 
         public bool OpenConnection(CpuType plcCpuType, string ipAdress, short rack, short slot)
         {
-            isPlcConnected = Db3.OpenConnection(plcCpuType, ipAdress, rack, slot);
-            return isPlcConnected;
+            return plcConn.OpenConnection(plcCpuType, ipAdress, rack, slot);
+        }
+
+        public void CloseConnection()
+        {
+           plcConn.CloseConnection();
         }
 
         public PlcDataPackage ReadPlcDataPackage()
         {
-            return Db3.ReadPlcDataBytesPackage();
+            return plcConn.ReadPlcDataBytesPackage();
         }
 
-        public void WritePlcDataSingleVariablePackage(int value)
+        public void WriteEntrancePlcDataSingleVariablePackage(int value)
         {
             switch (value)
             {
-                //Entrance:
                 case 0:
-                    Db3.WritePlcDataSingleVariable("DB14.DBX0.0", true);
+                    plcConn.WriteSingleVariableBool("DB14.DBX0.0", 1);
                     break;
-                //Singaling Trips:
                 case 1:
-                    Db3.WritePlcDataSingleVariable("DB3.DBX1.0", true);
+                    plcConn.WriteSingleVariableBool("DB14.DBX1.4", 1);
                     break;
                 case 2:
-                    Db3.WritePlcDataSingleVariable("DB3.DBX1.1", true);
+                    plcConn.WriteSingleVariableBool("DB14.DBX1.5", 1);
                     break;
                 case 3:
-                    Db3.WritePlcDataSingleVariable("DB3.DBX1.2", true);
+                    plcConn.WriteSingleVariableBool("DB14.DBX1.6", 1);
                     break;
                 case 4:
-                    Db3.WritePlcDataSingleVariable("DB3.DBX1.3", true);
+                    plcConn.WriteSingleVariableBool("DB14.DBX1.7", 1);
                     break;
                 case 5:
-                    Db3.WritePlcDataSingleVariable("DB3.DBX1.4", true);
+                    plcConn.WriteSingleVariableBool("DB14.DBX2.0", 1);
                     break;
                 case 6:
-                    Db3.WritePlcDataSingleVariable("DB3.DBX1.5", true);
+                    plcConn.WriteSingleVariableBool("DB14.DBX2.1", 1);
                     break;
                 case 7:
-                    Db3.WritePlcDataSingleVariable("DB3.DBX1.6", true);
+                    plcConn.WriteSingleVariableBool("DB14.DBX2.2", 1);
                     break;
                 case 8:
-                    Db3.WritePlcDataSingleVariable("DB3.DBX1.7", true);
+                    plcConn.WriteSingleVariableBool("DB14.DBX2.3", 1);
                     break;
                 default:
                     break;
             }
             
         }
-
-        public static bool IsPlcConnected()
+        public void WriteWeightPlcDataSingleVariablePackage(int value, double weight)
         {
-            return isPlcConnected;
+            switch (value)
+            {
+                case 0:
+                    plcConn.WriteWeightSingleVariableBool("DB14.DBD26.0", weight);
+                    break;
+                case 1:
+                    plcConn.WriteWeightSingleVariableBool("DB14.DBD30.0", weight);
+                    break;
+                case 2:
+                    plcConn.WriteWeightSingleVariableBool("DB14.DBD34.0", weight);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        public void WriteEliminateErrorsPlcDataSingleVariablePackage(int value)
+        {
+            switch (value)
+            {
+                case 0:
+                    plcConn.WriteSingleVariableBool("DB16.DBX0.1", 1);
+                    break;
+                case 1:
+                    plcConn.WriteSingleVariableBool("DB16.DBX0.3", 1);
+                    break;
+                case 2:
+                    plcConn.WriteSingleVariableBool("DB16.DBX0.5", 1);
+                    break;
+                case 3:
+                    plcConn.WriteSingleVariableBool("DB16.DBX0.7", 1);
+                    break;
+                case 4:
+                    plcConn.WriteSingleVariableBool("DB16.DBX1.1", 1);
+                    break;
+                default:
+                    break;
+            }
         }
 
     }

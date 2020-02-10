@@ -12,7 +12,7 @@ namespace OPCServer1
     class MeasurementDatabase
     {
        
-        static String PLC_DATA_PACKAGE = "PLC_DATA_PACKAGE_TABLE";
+        public static String PLC_DATA_PACKAGE = "PLC_DATA_PACKAGE_TABLE";
 
         MysqlConnection Connection = null;
 
@@ -91,6 +91,14 @@ namespace OPCServer1
             columns.Add("weight5 INT");
             columns.Add("weight6 INT");
             columns.Add("weight7 INT");
+            columns.Add("vehicleSize0 BOOLEAN");
+            columns.Add("vehicleSize1 BOOLEAN");
+            columns.Add("vehicleSize2 BOOLEAN");
+            columns.Add("vehicleSize3 BOOLEAN");
+            columns.Add("vehicleSize4 BOOLEAN");
+            columns.Add("vehicleSize5 BOOLEAN");
+            columns.Add("vehicleSize6 BOOLEAN");
+            columns.Add("vehicleSize7 BOOLEAN");
             //DB14
             columns.Add("vehicle_weight INT");
             columns.Add("platform_to_rotate_down INT");
@@ -109,6 +117,27 @@ namespace OPCServer1
             columns.Add("inventer_status INT");
             columns.Add("inventer_command_speed INT");
             columns.Add("inventer_actual_speed INT");
+            //Diagnostic
+            columns.Add("runstop INT");
+            columns.Add("rxtx INT");
+            columns.Add("link INT");
+            columns.Add("error INT");
+            columns.Add("maint INT");
+            columns.Add("runtimecycle DOUBLE(8,3)");
+            columns.Add("writelocaltime INT");
+            //Alarms
+            columns.Add("engineError_Alarm BOOLEAN");
+            columns.Add("engineError_alarmReset BOOLEAN");
+            columns.Add("engineError_Notify BOOLEAN");
+            columns.Add("engineError_notifyReset BOOLEAN");
+            columns.Add("controlSystemError_Alarm BOOLEAN");
+            columns.Add("controlSystemError_alarmReset BOOLEAN");
+            columns.Add("controlSystemError_Notify BOOLEAN");
+            columns.Add("controlSystemError_notifyReset BOOLEAN");
+            columns.Add("entranceSensorError_Alarm BOOLEAN");
+            columns.Add("entranceSensorError_alarmReset BOOLEAN");
+            columns.Add("vehicleTooHeavy BOOLEAN");
+            columns.Add("Error_Alarm BOOLEAN");
             //TIME
             columns.Add("time DATETIME NOT NULL");
             return columns.ToArray(typeof(string)) as string[];
@@ -170,6 +199,16 @@ namespace OPCServer1
             columns.Add("weight5");
             columns.Add("weight6");
             columns.Add("weight7");
+            //BOOL
+            //DB3
+            columns.Add("vehicleSize0");
+            columns.Add("vehicleSize1");
+            columns.Add("vehicleSize2");
+            columns.Add("vehicleSize3");
+            columns.Add("vehicleSize4");
+            columns.Add("vehicleSize5");
+            columns.Add("vehicleSize6");
+            columns.Add("vehicleSize7");
             //DB14
             columns.Add("vehicle_weight");
             columns.Add("platform_to_rotate_down");
@@ -188,11 +227,32 @@ namespace OPCServer1
             columns.Add("inventer_status");
             columns.Add("inventer_command_speed");
             columns.Add("inventer_actual_speed");
+            //DIAGNOSTIC
+            columns.Add("runstop");
+            columns.Add("rxtx");
+            columns.Add("link");
+            columns.Add("error");
+            columns.Add("maint");
+            columns.Add("runtimecycle");
+            columns.Add("writelocaltime");
+            //ALARMS
+            columns.Add("engineError_Alarm");
+            columns.Add("engineError_alarmReset");
+            columns.Add("engineError_Notify");
+            columns.Add("engineError_notifyReset");
+            columns.Add("controlSystemError_Alarm");
+            columns.Add("controlSystemError_alarmReset");
+            columns.Add("controlSystemError_Notify");
+            columns.Add("controlSystemError_notifyReset");
+            columns.Add("entranceSensorError_Alarm");
+            columns.Add("entranceSensorError_alarmReset");
+            columns.Add("vehicleTooHeavy");
+            columns.Add("Error_Alarm");
             //TIME
             columns.Add("time");
             return (string[])columns.ToArray(typeof(string));
         }
-
+     
         private string[] convertPlcDataPackageToTypesTable(PlcDataPackage plcDataPackage)
         {
             ArrayList types = new ArrayList();
@@ -240,6 +300,14 @@ namespace OPCServer1
             types.Add("int");
             types.Add("int");
             types.Add("int");
+            types.Add("bool");
+            types.Add("bool");
+            types.Add("bool");
+            types.Add("bool");
+            types.Add("bool");
+            types.Add("bool");
+            types.Add("bool");
+            types.Add("bool");
             types.Add("int");
             types.Add("int");
             types.Add("int");
@@ -253,6 +321,25 @@ namespace OPCServer1
             types.Add("int");
             types.Add("int");
             types.Add("int");
+            types.Add("int");
+            types.Add("int");
+            types.Add("int");
+            types.Add("int");
+            types.Add("int");
+            types.Add("double");
+            types.Add("int");
+            types.Add("bool");
+            types.Add("bool");
+            types.Add("bool");
+            types.Add("bool");
+            types.Add("bool");
+            types.Add("bool");
+            types.Add("bool");
+            types.Add("bool");
+            types.Add("bool");
+            types.Add("bool");
+            types.Add("bool");
+            types.Add("bool");
             types.Add("time");
             return types.ToArray(typeof(string)) as string[];
         }
@@ -304,6 +391,14 @@ namespace OPCServer1
             values.Add(plcDataPackage.Weight5.ToString());
             values.Add(plcDataPackage.Weight6.ToString());
             values.Add(plcDataPackage.Weight7.ToString());
+            values.Add(plcDataPackage.VehicleSize0.ToString());
+            values.Add(plcDataPackage.VehicleSize1.ToString());
+            values.Add(plcDataPackage.VehicleSize2.ToString());
+            values.Add(plcDataPackage.VehicleSize3.ToString());
+            values.Add(plcDataPackage.VehicleSize4.ToString());
+            values.Add(plcDataPackage.VehicleSize5.ToString());
+            values.Add(plcDataPackage.VehicleSize6.ToString());
+            values.Add(plcDataPackage.VehicleSize7.ToString());
             values.Add(plcDataPackage.Vehicle_weight.ToString());
             values.Add(plcDataPackage.Platform_to_rotate_down.ToString());
             values.Add(plcDataPackage.Rotation_angle.ToString());
@@ -317,14 +412,27 @@ namespace OPCServer1
             values.Add(plcDataPackage.Inventer_status.ToString());
             values.Add(plcDataPackage.Inventer_command_speed.ToString());
             values.Add(plcDataPackage.Inventer_actual_speed.ToString());
+            values.Add(plcDataPackage.RunStop.ToString());
+            values.Add(plcDataPackage.RxTx.ToString());
+            values.Add(plcDataPackage.link.ToString());
+            values.Add(plcDataPackage.error.ToString());
+            values.Add(plcDataPackage.RunTimeCycle.ToString());
+            values.Add(plcDataPackage.WriteLocalTime.ToString());
+            values.Add(plcDataPackage.Inventer_actual_speed.ToString());
+            values.Add(plcDataPackage.engineError_Alarm.ToString());
+            values.Add(plcDataPackage.engineError_alarmReset.ToString());
+            values.Add(plcDataPackage.engineError_Notify.ToString());
+            values.Add(plcDataPackage.engineError_notifyReset.ToString());
+            values.Add(plcDataPackage.controlSystemError_Alarm.ToString());
+            values.Add(plcDataPackage.controlSystemError_alarmReset.ToString());
+            values.Add(plcDataPackage.controlSystemError_Notify.ToString());
+            values.Add(plcDataPackage.controlSystemError_notifyReset.ToString());
+            values.Add(plcDataPackage.entranceSensorError_Alarm.ToString());
+            values.Add(plcDataPackage.entranceSensorError_alarmReset.ToString());
+            values.Add(plcDataPackage.vehicleTooHeavy.ToString());
+            values.Add(plcDataPackage.Error_Alarm.ToString());
             values.Add(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
             return values.ToArray(typeof(string)) as string[];
-        }
-
-        public MySqlDataReader GetNewestMeasurment()
-        {
-            String query = "SELECT * FROM " + PLC_DATA_PACKAGE + " WHERE plc_data_package_id=(SELECT MAX(plc_data_package_id) FROM " + PLC_DATA_PACKAGE + ");";
-            return Connection.ExecuteReader(query);
         }
 
         public MySqlDataReader GetAllSpeedAndTimeData()
@@ -334,21 +442,9 @@ namespace OPCServer1
           
         }
 
-        public MySqlDataReader GetNewestSpeedAndTimeData()
-        {
-            String query = "SELECT plc_data_package_id, ramp_actual_speed_freq, time FROM " + PLC_DATA_PACKAGE + " WHERE plc_data_package_id=(SELECT MAX(plc_data_package_id) FROM " + PLC_DATA_PACKAGE + ");";
-            return Connection.ExecuteReader(query);
-
-        }
-
         public bool CloseConnection()
         {
             return Connection.closeConnection();
-        }
-
-        public DataTable GetData(string selectCommand)
-        {
-            return Connection.GetData(selectCommand);
         }
     }
 }

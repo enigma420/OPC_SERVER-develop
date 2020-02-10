@@ -31,7 +31,30 @@ namespace OPCServer1
             int ProductIndex = comboBox1.SelectedIndex;
             string productName = comboBox1.Text.ToString();
             MessageBox.Show($"Wykonano Pomyślnie {productName} !");
-            plcService.WritePlcDataSingleVariablePackage(ProductIndex);
+            plcService.WriteEntrancePlcDataSingleVariablePackage(ProductIndex);
         }
+        private void Button2_Click(object sender, EventArgs e)
+        {
+            int ProductIndex = comboBox3.SelectedIndex;
+            string productName = comboBox3.Text.ToString();
+            int weight;
+            int.TryParse(textBox1.Text,out weight);
+            MessageBox.Show($"Ustawiono {productName} na wartość: {weight} !");
+            plcService.WriteWeightPlcDataSingleVariablePackage(ProductIndex, weight);
+        }
+        private void Button3_Click(object sender, EventArgs e)
+        {
+            int ProductIndex = comboBox3.SelectedIndex;
+            string productName = comboBox3.Text.ToString();
+            MessageBox.Show($"Usunięto Błąd{productName} !");
+            plcService.WriteEliminateErrorsPlcDataSingleVariablePackage(ProductIndex);
+        }
+
+        private void ComboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+      
     }
 }
