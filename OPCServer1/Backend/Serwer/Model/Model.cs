@@ -33,6 +33,18 @@ namespace OPCServer1.Backend.Serwer.Model
         public bool vehicleTooHeavy { get; set; }
         public bool Error_Alarm { get; set; }
 
+
+        //DB3
+
+        public bool VehicleSize0 { get; set; }
+        public bool VehicleSize1 { get; set; }
+        public bool VehicleSize2 { get; set; }
+        public bool VehicleSize3 { get; set; }
+        public bool VehicleSize4 { get; set; }
+        public bool VehicleSize5 { get; set; }
+        public bool VehicleSize6 { get; set; }
+        public bool VehicleSize7 { get; set; }
+
         public bool Occupancy0 { get; set; }
         public bool Occupancy1 { get; set; }
         public bool Occupancy2 { get; set; }

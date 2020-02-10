@@ -56,16 +56,8 @@ namespace OPCServer1.Forms
             currentlyMeasurement1.Visible = false;
             diagrams1.Visible = false;
 
-            Thread watek3 = new Thread(new ThreadStart(startTest));
-            watek3.Start();
         }
 
-        private void startTest()
-        {
-            Thread.Sleep(3000);
-            Console.WriteLine("Test started");
-            Instance.plcDataUpdate.startTest();
-        }
 
         private void Dashboard_Load(object sender, EventArgs e)
         {
@@ -73,7 +65,7 @@ namespace OPCServer1.Forms
             history1.Visible = false;
             currentlyMeasurement1.Visible = false;
             diagrams1.Visible = false;
-            //refreshForm();
+            
 
         }
         private void Button6_Click(object sender, EventArgs e)

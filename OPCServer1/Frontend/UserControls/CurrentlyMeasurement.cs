@@ -86,14 +86,9 @@ namespace OPCServer1
                 checkBox7.Checked = data.SignalingTrips6;
                 checkBox8.Checked = data.SignalingTrips7;
                 checkBox32.Checked = data.Entrance;
-                checkBox31.Checked = data.Entrance_enabled;
                 checkBox29.Checked = data.Entrance_big_vehicle;
                 checkBox28.Checked = data.Entrance_small_vehicle;
-                checkBox27.Checked = data.Left_right;
                 checkBox26.Checked = data.Parking_in_move;
-                checkBox25.Checked = data.Parking_out;
-                checkBox30.Checked = data.Out_enabled;
-                checkBox33.Checked = data.Vehicle_too_heavy_for_small_platform;
                 checkBox34.Checked = data.Parking_occupied;
                 checkBox35.Checked = data.Big_platform_occupied;
                 textBox43.Text = data.Weight0.ToString();
@@ -105,13 +100,13 @@ namespace OPCServer1
                 textBox37.Text = data.Weight6.ToString();
                 textBox36.Text = data.Weight7.ToString();
                 textBox51.Text = data.Vehicle_weight.ToString();
-                textBox50.Text = data.Platform_to_rotate_down.ToString();
                 textBox49.Text = data.Rotation_angle.ToString();
                 textBox48.Text = data.Rotation_time.ToString();
-                textBox46.Text = data.Ramp_engine_speed_freq.ToString();
                 textBox45.Text = data.Ramp_actual_speed_freq.ToString();
-                textBox56.Text = data.Inventer_actual_speed.ToString();
-                textBox19.Text = data.Time.ToShortDateString();
+                textBox19.Text = data.Time.ToString();
+                textBox44.Text = data.Minimum_weight.ToString();
+                textBox52.Text = data.Boundary_weight.ToString();
+                textBox53.Text = data.Maximum_weight.ToString();
             });
         }
         

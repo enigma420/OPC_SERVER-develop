@@ -41,13 +41,11 @@ namespace OPCServer1
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            // Reload the data from the database.
             GetData(dataAdapter.SelectCommand.CommandText);
         }
 
         private void Button2_Click(object sender, EventArgs e)
         {
-            // Update the database with changes.
             dataAdapter.Update((DataTable)bindingSource1.DataSource);
         }
 
@@ -55,17 +53,11 @@ namespace OPCServer1
         {
             
         }
-
-
-
         private void GetData(string selectCommand)
         {
             try
             {
-                // Specify a connection string. Replace the given value with a 
-                // valid connection string for a Northwind SQL Server sample
-                // database accessible to your system.
-                
+          
                 string connectionString;
                 connectionString = "SERVER=" + Server + ";" + "DATABASE=" +
                 Database + ";" + "UID=" + Uid + ";" + "PASSWORD=" + Password + ";";
@@ -97,25 +89,33 @@ namespace OPCServer1
 
         private void Button3_Click(object sender, EventArgs e)
         {
-            // Bind the DataGridView to the BindingSource
-            // and load the data from the database.
             dataGridView2.DataSource = bindingSource1;
             GetData("SELECT * FROM PLC_DATA_PACKAGE_TABLE");
         }
 
         private void Button4_Click(object sender, EventArgs e)
         {
-            // Bind the DataGridView to the BindingSource
-            // and load the data from the database.
             dataGridView2.DataSource = bindingSource1;
             GetData("SELECT * FROM PLC_DATA_PACKAGE_TABLE WHERE DATE_FORMAT(time, '%Y-%m-%d') = current_date;");
-            
         }
 
       
 
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+
+        }
+
+        private void Button5_Click(object sender, EventArgs e)
+        {
+            dataGridView2.DataSource = bindingSource1;
+            GetData("SELECT plc_data_package_id,occupancy0,platformsize0,signalingTrips0,entrance,parking_occupied,big_platform_occupied,weight0,vehicle_weight,rotation_angle,rotation_time,ramp_actual_speed_freq,minimum_weight,boundary_weight,maximum_weight,time FROM PLC_DATA_PACKAGE_TABLE");
+        }
+
+        private void Button6_Click(object sender, EventArgs e)
+        {
+            dataGridView2.DataSource = bindingSource1;
+            GetData("SELECT plc_data_package_id,minimum_weight,boundary_weight,maximum_weight,time FROM PLC_DATA_PACKAGE_TABLE");
 
         }
     }

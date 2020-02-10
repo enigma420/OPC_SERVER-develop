@@ -1,5 +1,4 @@
-﻿
-using MySql.Data.MySqlClient;
+﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -31,21 +30,13 @@ namespace OPCServer1
             password = "";
             connection = new MySqlConnection();
         }
-
-        //Constructor
+        //Konstruktor
         public MysqlConnection(string server, string database, string uid, string password)
         {
             initialize(server, database, uid, password);
             openConnection();
         }
-
-
-        public bool IsDbConnected()
-        {
-            return isDbConnected;
-        }
-
-        //Initialize values
+        //Inicjalizacja danych do utworzenia Bazy Danych
         private void initialize(string Server,string Database,string Uid,string Password)
         {
             server = Server;
@@ -57,37 +48,32 @@ namespace OPCServer1
                 connection = new MySqlConnection(getConnectionString(server, database, uid, password));
             } catch (System.ArgumentException ex)
             {
-                Console.WriteLine("Error while initializating db: {0}", ex);
+                Console.WriteLine("BŁĄD PODCZAS INICJALIZACJI BAZY DANYCH, Błąd:{0}", ex.ToString());
             }
-            
         }
-
         private string getConnectionString(string server, string database, string uid, string password)
         {
             return "SERVER=" + server + ";" + "DATABASE=" +
             database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
         }
-
-        //open connection to database
+        //Nawiązanie Połączenia z Bazą Danych
         public bool openConnection()
         {
             try
             {
                 connection.Open();
-                //MessageBox.Show("UDAŁO SIĘ POŁĄCZYĆ Z BAZĄ DANYCH");
-                isDbConnected = true;
+                MessageBox.Show("UDAŁO SIĘ POŁĄCZYĆ Z BAZĄ DANYCH");
+                isDbConnected = true; /* Status Połączenia z Bazą Danych */
                 return true;
             }
             catch (MySqlException ex)
          {
-                //MessageBox.Show("NIE UDAŁO SIĘ POŁĄCZYĆ Z BAZĄ DANYCH");
+                MessageBox.Show("NIE UDAŁO SIĘ POŁĄCZYĆ Z BAZĄ DANYCH, Błąd:{0}", ex.ToString());
                 isDbConnected = false;
                 return false;
             }
         }
-
-
-        //Close connection
+        //Zerwanie Połączenia z Bazą Danych
         public bool closeConnection()
         {
             try
@@ -100,7 +86,11 @@ namespace OPCServer1
                 return true;
             }
         }
-        
+
+        public bool IsDbConnected()
+        {
+            return isDbConnected;
+        }
         public String createTableQuery(String tableName, string[] columns)
         {
             String query = "CREATE TABLE IF NOT EXISTS " + tableName + "(";
@@ -132,21 +122,21 @@ namespace OPCServer1
             }
         }
 
-        public void dropTable(String tableName)
-        {
-            String query = "DROP TABLE IF EXISTS " + tableName + " ;";
-            try
-            {
-                MySqlCommand cmd = new MySqlCommand(query, connection);
-                cmd.ExecuteNonQuery();
-            }
-            catch (MySqlException ex)
-            {
-                Console.WriteLine("Error while dropping table %s err: %s", tableName, ex);
-            }
-        }
+        //public void dropTable(String tableName)
+        //{
+        //    String query = "DROP TABLE IF EXISTS " + tableName + " ;";
+        //    try
+        //    {
+        //        MySqlCommand cmd = new MySqlCommand(query, connection);
+        //        cmd.ExecuteNonQuery();
+        //    }
+        //    catch (MySqlException ex)
+        //    {
+        //        Console.WriteLine("Error while dropping table %s err: %s", tableName, ex);
+        //    }
+        //}
 
-        //Insert Query statement
+        //Insert Query
         public String insertIntoQuery(String tableName, string[] columns, string[] types, string[] values)
         {
 
@@ -156,7 +146,7 @@ namespace OPCServer1
             {
                 query += column + ", ";
             }
-            query = query.Substring(0, query.Length - 2); //delete last comma
+            query = query.Substring(0, query.Length - 2); //usuń ostatni przecinek
             query += ") ";
             query += "VALUES (";
 
@@ -230,10 +220,10 @@ namespace OPCServer1
 
         }
 
-        struct results
-        {
-            Dictionary<string, string> resultMap;
-        }
+        //struct results
+        //{
+        //    Dictionary<string, string> resultMap;
+        //}
 
     }
 
